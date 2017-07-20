@@ -1,54 +1,32 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import {actionCreators} from '../actions'
 
-import { actionCreators } from '../reducers/todoListRedux'
 import List from '../components/list'
 import Input from '../components/input'
 import Title from '../components/title'
 
 class App extends Component {
 
-    state = {};
-
-    componentWillMount() {
-        const {store} = this.props;
-
-        const {todos} = store.getState();
-        this.setState({todos});
-
-        this.unsubscribe = store.subscribe(() => {
-            const {todos} = store.getState();
-            this.setState({todos})
-        })
-    }
-
-    componentWillUnmount() {
-        this.unsubscribe()
-    }
-
     onAddTodo = (text) => {
-        const {store} = this.props;
-
-        store.dispatch(actionCreators.add(text))
+        this.props.add(text)
     };
 
     onRemoveTodo = (index) => {
-        const {store} = this.props;
-
-        store.dispatch(actionCreators.remove(index))
+        this.props.remove(index)
     };
 
     onSelectTodo = (index) => {
-        const {store} = this.props;
-        store.dispatch(actionCreators.select(index))
+        this.props.select(index)
     };
 
     onEditTodo = (index) => {
-        const {store} = this.props;
-        store.dispatch(actionCreators.edit(index))
+        this.props.edit(index)
     };
 
     render() {
-        const {todos} = this.state;
+        const {todos} = this.props.todos;
 
         return (
             <div style={styles.container}>
@@ -61,7 +39,7 @@ class App extends Component {
                 />
                 <List
                     list={todos}
-                    onClickItem={this.onRemoveTodo}
+                    onRemoveItem={this.onRemoveTodo}
                     onSelectItem={this.onSelectTodo}
                     onEditItem={this.onEditTodo}
                 />
@@ -77,5 +55,14 @@ const styles = {
     }
 };
 
+function mapStateToProps(state) {
+    return {
+        todos: state.todos
+    }
+}
 
-export default App;
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(actionCreators, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

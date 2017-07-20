@@ -1,65 +1,24 @@
-// The types of actions that you can dispatch to modify the state of the store
-export const types = {
-    ADD: "ADD",
-    REMOVE: "REMOVE",
-    SELECT: "SELECT",
-    EDIT: "EDIT"
-};
-
-// Helper functions to dispatch actions, optionally with payloads
-export const actionCreators = {
-    add: item => {
-        return { type: types.ADD, payload: item };
-    },
-    remove: index => {
-        return { type: types.REMOVE, payload: index };
-    },
-    select: index => {
-        return { type: types.SELECT, payload: index };
-    },
-    edit: index => {
-        return { type: types.EDIT, payload: index};
-    }
-};
+import types from '../constants'
 
 // Initial state of the store
 const initialState = {
     todos: [
-        [
-            "Click to remove",
-            false
-        ],
-        [
-            "Learn React",
-            false
-        ],
-        [
-            "Write Code",
-            false
-        ],
-        [
-            "Ship App",
-            false
-        ]
-
-        //{
-        //    id: 1,
-        //    text: 'Hello World!',
-        //    done: false
-        //},
-        //{
-        //    id: 1,
-        //    text: 'Hello World!',
-        //    done: false
-        //},
-        //{
-        //    id: 1,
-        //    text: 'Hello World!',
-        //    done: false
-        //},
+        {
+            id: 1,
+            text: 'Hello World!',
+            done: false
+        },
+        {
+            id: 2,
+            text: 'Hola Mundo!',
+            done: false
+        },
+        {
+            id: 3,
+            text: 'Привет Мир!',
+            done: false
+        },
     ]
-
-
 };
 
 
@@ -70,7 +29,7 @@ const initialState = {
 // - We set \`state\` to our \`initialState\` by default. Redux will
 //   call reducer() with no state on startup, and we are expected to
 //   return the initial state of the app in this case.
-export const reducer = (state = initialState, action) => {
+export const allState = (state = initialState, action) => {
     const { todos } = state;
     const { type, payload } = action;
 
@@ -90,7 +49,6 @@ export const reducer = (state = initialState, action) => {
         case types.SELECT: {
             return {
                 ...state,
-
             };
         }
         case types.EDIT: {
@@ -98,7 +56,8 @@ export const reducer = (state = initialState, action) => {
 
             };
         }
+        default:
+            return state;
     }
 
-    return state;
 };

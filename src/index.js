@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 
 import App from './containers/app'
 
-import { allState } from './reducers/todoListRedux'
+import {allState} from './reducers/allState'
 const store = createStore(allState);
 
 render(

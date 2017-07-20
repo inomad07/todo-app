@@ -53,7 +53,7 @@ export const allState = (state = initialState, action) => {
         }
         case types.EDIT: {
             return {
-
+                ...state,
             };
         }
         default:

@@ -1,39 +1,37 @@
 import React, { Component } from "react";
-
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {actionCreators} from '../actions'
 class List extends Component {
 
-    changeColor = () => this.setState(prev => ({ color: prev.color === '#0095ff' ? '' : '#0095ff' }));
+    changeColor = () => this.setState(prev => ({color: prev.color === '#0095ff' ? '' : '#0095ff'}));
 
-    renderItem = (text, i) => {
-        const onRemoveItem = this.props.onClickItem;
-        const { onSelectItem } = this.props;
-        const { onEditItem } = this.props;
-
+    renderItem = (todo) => {
+        const { onRemoveItem } = this.props;
+        console.log(arguments);
         return (
-            <div  style={styles.item }  >
-                {text}&nbsp;&nbsp;&nbsp;
-                <button onClick={() => this.props.todos.onClickItem(i)}>Delete</button>
+            <div style={styles.item } >
+                {todo.text}&nbsp;&nbsp;&nbsp;
+                <button onClick={() => onRemoveItem(todo.id)}>Delete</button>
 
-                <button onClick={() => this.props.onEditItem(i)}>Edit</button>
+                <button onClick={() => this.props.onEditItem(todo.id)}>Edit</button>
             </div>
         );
      };
 
 
-    changeColor = () => this.setState(prev => ({ color: prev.color === '#0095ff' ? '' : '#0095ff' }));
+    changeColor = () => this.setState(prev => ({color: prev.color === '#0095ff' ? '' : '#0095ff'}));
 
     render() {
-        const { list } = this.props;
-        console.log(list);
-
+        console.log(this.props.todos);
         return (
             <div style={styles.container}>
-                {list.map(this.renderItem)}
+                {this.props.todos.map(this.renderItem)}
             </div>
         );
     }
-}
 
+}
 
 const styles = {
     container: {
@@ -48,4 +46,13 @@ const styles = {
     }
 };
 
-export default List;
+function mapStateToProps(state) {
+    return {
+        todos: state.todos
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(actionCreators, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(List);

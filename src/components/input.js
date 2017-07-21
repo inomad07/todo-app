@@ -18,7 +18,12 @@ export default class Input extends Component {
         if (!value) return; // Don't submit if empty
 
         onSubmitEditing(value);
-        this.setState({ value: "" });
+
+        this.setState(
+            {
+                value: ""
+            }
+        );
     };
 
     render() {

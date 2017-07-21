@@ -22,6 +22,7 @@ const initialState = {
 };
 
 
+let id = 3;
 // Function to handle actions and update the state of the store.
 // Notes:
 // - The reducer must return a new state object. It must never modify
@@ -36,14 +37,22 @@ export const allState = (state = initialState, action) => {
     switch (type) {
         case types.ADD: {
             return {
-                ...state,
-                todos: [payload, ...todos]
+
+                todos: [
+                    ...state.todos,
+                    {
+                        id: ++id,
+                        text: action.payload,
+                        done: false,
+                        ...todos
+                    }
+                ]
             };
         }
         case types.REMOVE: {
             return {
                 ...state,
-                todos: todos.filter((todo, i) => i !== payload)
+                todos: todos.filter(todo => todo.id !== payload)
             };
         }
         case types.SELECT: {

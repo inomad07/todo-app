@@ -7,6 +7,15 @@ import List from '../components/list'
 import Input from '../components/input'
 import Title from '../components/title'
 
+
+const styles = {
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+    }
+};
+
+
 class App extends Component {
 
     onAddTodo = (text) => {
@@ -35,25 +44,19 @@ class App extends Component {
                 </Title>
                 <Input
                     placeholder={'Type a todo, then hit enter!'}
-                    onSubmitEditing={this.onAddTodo}
+                    onSubmitEditing={ this.onAddTodo }
                 />
                 <List
                     list={todos}
-                    onRemoveItem={this.onRemoveTodo}
-                    onSelectItem={this.onSelectTodo}
-                    onEditItem={this.onEditTodo}
+                    onRemoveItem={ this.onRemoveTodo }
+                    onSelectItem={ this.onSelectTodo }
+                    onEditItem={ this.onEditTodo }
                 />
             </div>
         )
     }
 }
 
-const styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-    }
-};
 
 function mapStateToProps(state) {
     return {
@@ -64,5 +67,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(actionCreators, dispatch)
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

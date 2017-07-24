@@ -1,0 +1,11 @@
+div.todo-list {
+  display: flex;
+  flex-direction: column;
+
+}
+
+div.todo {
+   background-color: whitesmoke;
+   margin-bottom: 5px;
+   padding: 15px;
+}

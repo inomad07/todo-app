@@ -16,7 +16,7 @@ const initialState = {
         {
             id: 3,
             text: 'Привет Мир!',
-            done: false
+            done: true
         },
     ]
 };
@@ -58,13 +58,23 @@ export const allState = (state = initialState, action) => {
             return {
                 todos: todos.map(todo => todo.id === action.payload ?
                 {...todo, done: !todo.done} : todo)
-            }
+            };
         }
         case types.EDIT: {
             return {
                 ...state,
             };
         }
+        case types.SAVE:
+            return {
+                todos:
+                    todos.map(todo => todo.id === action.payload.id ?
+                    {...todo, text: action.payload.text}
+                        : todo
+                )
+        };
+
+
         default:
             return state;
     }

@@ -25,5 +25,13 @@ export const actionCreators = {
             type: types.EDIT,
             payload: index
         };
+    },
+
+    save: (item, text)=> {
+            return {
+                type: types.SAVE,
+                payload: {item, text}
+            }
     }
+
 };

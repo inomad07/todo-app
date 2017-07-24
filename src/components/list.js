@@ -6,8 +6,6 @@ import {actionCreators} from '../actions'
 
 class List extends Component {
 
-    changeColor = () => this.setState(prev => ({color: prev.color === '#0095ff' ? '' : '#0095ff'}));
-
     //renderItem = (todo) => {
     //    const { onRemoveItem } = this.props;
     //    console.log(arguments);
@@ -21,21 +19,19 @@ class List extends Component {
     //    );
     // };
 
-
-    changeColor = () => this.setState(prev => ({color: prev.color === '#0095ff' ? '' : '#0095ff'}));
-
     render() {
         let todos = this.props.todos;
         const { onRemoveItem } = this.props;
+        const { onSelectItem } = this.props;
         console.log(todos);
 
         return (
             <div style={styles.container}>
-
-                {todos.map(todo => <div key={todo.id} style={styles.item }>
-                   {todo.text} &nbsp;&nbsp;&nbsp;&nbsp;
+                { todos.map(todo => <div key={todo.id} style={
+                { backgroundColor: "whitesmoke", marginBottom: 5, padding: 15,
+                textDecoration: todo.done ? 'line-through' : 'none'}} > {todo.text} &nbsp;&nbsp;&nbsp;&nbsp;
                     <button onClick={() => onRemoveItem(todo.id)}>Delete</button>
-                    <button>Toggle</button>
+                    <button onClick={() => onSelectItem(todo.id)}>Toggle</button>
                 </div>)}
 
             </div>
@@ -52,7 +48,7 @@ const styles = {
     item: {
         backgroundColor: "whitesmoke",
         marginBottom: 5,
-        padding: 15
+        padding: 15,
 
     }
 };

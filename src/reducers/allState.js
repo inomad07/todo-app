@@ -37,7 +37,6 @@ export const allState = (state = initialState, action) => {
     switch (type) {
         case types.ADD: {
             return {
-
                 todos: [
                     ...state.todos,
                     {
@@ -57,8 +56,9 @@ export const allState = (state = initialState, action) => {
         }
         case types.SELECT: {
             return {
-                ...state,
-            };
+                todos: todos.map(todo => todo.id === action.payload ?
+                {...todo, done: !todo.done} : todo)
+            }
         }
         case types.EDIT: {
             return {

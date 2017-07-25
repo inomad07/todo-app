@@ -1,5 +1,14 @@
 import React, { Component } from "react";
 
+const styles = {
+    input: {
+        fontSize: "100%",
+        padding: 15,
+        borderWidth: 0
+    }
+};
+
+
 export default class Input extends Component {
     state = {
         value: ""
@@ -43,10 +52,3 @@ export default class Input extends Component {
     }
 }
 
-const styles = {
-    input: {
-        fontSize: "100%",
-        padding: 15,
-        borderWidth: 0
-    }
-};

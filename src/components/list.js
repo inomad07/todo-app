@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {actionCreators} from '../actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { actionCreators } from '../actions';
 
 class List extends Component {
 
@@ -17,11 +17,11 @@ class List extends Component {
         this.setState({text: event.target.value});
     };
 
-    editTodo = (todo) => {
+    editItem = (todo) => {
         this.setState({editableToDoId: todo.id, text: todo.text});
     };
 
-    saveTodo = () => {
+    saveItem = () => {
         this.props.save(this.state.editableToDoId, this.state.text);
         this.setState({editableToDoId: '', text: ''});
     };
@@ -40,12 +40,12 @@ class List extends Component {
                         value={this.state.text}
                         onChange={this.onTextChange}/>
                     <button
-                        onClick={this.saveTodo}>Save
+                        onClick={this.saveItem}>Save
                     </button>
                 </span>
             );
 
-        return (<span onDoubleClick={() => this.editTodo(todo)}>{todo.text}</span>)
+        return (<span onDoubleClick={() => this.editItem(todo)}>{todo.text}</span>)
     };
 
     render() {

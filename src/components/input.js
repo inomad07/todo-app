@@ -32,12 +32,12 @@ export default class Input extends Component {
 
         return (
             <input
-                style={styles.input}
-                type={"text"}
-                value={value}
-                placeholder={placeholder}
-                onChange={this.handleChange}
-                onKeyPress={this.handleKeyPress}
+                style       = { styles.input }
+                type        = { "text" }
+                value       = { value }
+                placeholder = { placeholder }
+                onChange    = { this.handleChange }
+                onKeyPress  = { this.handleKeyPress }
             />
         );
     }

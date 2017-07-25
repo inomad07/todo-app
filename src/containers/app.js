@@ -35,22 +35,22 @@ class App extends Component {
     };
 
     render() {
-        const {todos} = this.props.todos;
+        const { todos } = this.props.todos;
 
         return (
-            <div style={styles.container}>
+            <div style = { styles.container }>
                 <Title>
                     To-Do List
                 </Title>
                 <Input
-                    placeholder={'Type a todo, then hit enter!'}
-                    onSubmitEditing={ this.onAddTodo }
+                    placeholder = {'Type a todo, then hit enter!'}
+                    onSubmitEditing = { this.onAddTodo }
                 />
                 <List
                     list={todos}
-                    onRemoveItem={ this.onRemoveTodo }
-                    onSelectItem={ this.onSelectTodo }
-                    onEditItem={ this.onEditTodo }
+                    onRemoveItem = { this.onRemoveTodo }
+                    onSelectItem = { this.onSelectTodo }
+                    onEditItem   = { this.onEditTodo }
                 />
             </div>
         )

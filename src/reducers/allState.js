@@ -23,13 +23,7 @@ const initialState = {
 
 
 let id = 3;
-// Function to handle actions and update the state of the store.
-// Notes:
-// - The reducer must return a new state object. It must never modify
-//   the state object. State objects should be treated as immutable.
-// - We set \`state\` to our \`initialState\` by default. Redux will
-//   call reducer() with no state on startup, and we are expected to
-//   return the initial state of the app in this case.
+
 export const allState = (state = initialState, action) => {
     const { todos } = state;
     const { type, payload } = action;
@@ -57,7 +51,7 @@ export const allState = (state = initialState, action) => {
         case types.SELECT: {
             return {
                 todos: todos.map(todo => todo.id === action.payload ?
-                {...todo, done: !todo.done} : todo)
+                { ...todo, done: !todo.done } : todo)
             };
         }
         case types.EDIT: {
@@ -69,12 +63,10 @@ export const allState = (state = initialState, action) => {
             return {
                 todos:
                     todos.map(todo => todo.id === action.payload.id ?
-                    {...todo, text: action.payload.text}
+                    { ...todo, text: action.payload.text }
                         : todo
                 )
         };
-
-
         default:
             return state;
     }

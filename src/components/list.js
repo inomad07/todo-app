@@ -26,8 +26,11 @@ class List extends Component {
         this.setState({editableToDoId: '', text: ''});
     };
 
+    switchMode = () => {
+        alert("hello ");
+    };
 
-    switchModes = (todo) => {
+    renderItem = (todo) => {
         let isCurrentToDoEditable = this.state.editableToDoId === todo.id;
         if (isCurrentToDoEditable)
             return (
@@ -42,25 +45,25 @@ class List extends Component {
                 </span>
             );
 
-        return (<span onClick={() => this.editTodo(todo)}>{todo.text}</span>)
+        return (<span onDoubleClick={() => this.editTodo(todo)}>{todo.text}</span>)
     };
 
     render() {
         let todos = this.props.todos;
         const { onRemoveItem } = this.props;
         const { onSelectItem } = this.props;
-        const { onEditItem } = this.props;
         console.log(todos);
 
         return (
             <div className="todo-list">
-                { todos.map(todo => <div className="todo" key={todo.id} style={ { textDecoration: todo.done ? 'line-through' : 'none'} }
-                                         onDoubleClick={() => {onEditItem(todo.id)}}>
-                    {todo.text} &nbsp;&nbsp;&nbsp;&nbsp;
+                { todos.map(todo => <div className="todo" key={todo.id}
+                                         style={ { textDecoration: todo.done ? 'line-through' : 'none'} }>
+
+                    {this.renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
+
                     <button onClick={() => onSelectItem(todo.id)}>Select</button>
                     <button onClick={() => onRemoveItem(todo.id)}>Delete</button>
 
-                    {this.switchModes(todo)}
                 </div>)}
 
             </div>

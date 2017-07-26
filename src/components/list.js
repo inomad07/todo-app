@@ -15,24 +15,27 @@ class List extends Component {
 
     onTextChange = (event) => {
         this.setState({text: event.target.value});
+        console.log('onTextChange: ', this.setState({text: event.target.value}))
     };
 
     editItem = (todo) => {
         this.setState({editableToDoId: todo.id, text: todo.text});
+        console.log('editItem: ', this.setState({editableToDoId: todo.id, text: todo.text}))
     };
 
     saveItem = () => {
-        this.props.save(this.state.editableToDoId, this.state.text);
+        let newItem = this.props.save(this.state.editableToDoId, this.state.text);
         this.setState({editableToDoId: '', text: ''});
+        console.log('saveItm: ', newItem)
     };
 
-    switchMode = () => {
-        alert("hello ");
-    };
+    //switchMode = () => {
+    //    alert("hello ");
+    //};
 
     renderItem = (todo) => {
-        let isCurrentToDoEditable = this.state.editableToDoId === todo.id;
-        if (isCurrentToDoEditable)
+        let isToDoEditable = this.state.editableToDoId;
+        if (isToDoEditable  === todo.id)
             return (
                 <span>
                     <input

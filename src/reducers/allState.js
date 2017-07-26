@@ -54,16 +54,10 @@ export const allState = (state = initialState, action) => {
                 { ...todo, done: !todo.done } : todo)
             };
         }
-        case types.EDIT: {
-            return {
-                ...state,
-            };
-        }
         case types.SAVE:
             return {
-                todos:
-                    todos.map(todo => todo.id === action.payload.id ?
-                    { ...todo, text: action.payload.text }
+                todos: todos.map(todo => todo.id === action.payload.id ?
+                    { ...todo, text: action.payload }
                         : todo
                 )
         };

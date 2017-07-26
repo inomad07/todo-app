@@ -20,17 +20,10 @@ export const actionCreators = {
             payload: index
         };
     },
-    edit: index => {
-        return {
-            type: types.EDIT,
-            payload: index
-        };
-    },
-
-    save: (item, text)=> {
+    save: (index, text)=> {
             return {
                 type: types.SAVE,
-                payload: {item, text}
+                payload: {index, text}
             }
     }
 

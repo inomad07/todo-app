@@ -57,7 +57,7 @@ export const allState = (state = initialState, action) => {
         case types.SAVE:
             return {
                 todos: todos.map(todo => todo.id === action.payload.id ?
-                    { ...todo, text: action.payload }
+                   { ...todo,  text: action.payload.text  }
                         : todo
                 )
         };

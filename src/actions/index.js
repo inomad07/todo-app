@@ -20,11 +20,11 @@ export const actionCreators = {
             payload: index
         };
     },
-    save: (index, text)=> {
-            return {
-                type: types.SAVE,
-                payload: {index, text}
-            }
+    save: (id, text)=> {
+        return {
+            type: types.SAVE,
+            payload: {id, text}
+        }
     }
 
 };

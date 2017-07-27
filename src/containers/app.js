@@ -30,10 +30,6 @@ class App extends Component {
         this.props.select(index)
     };
 
-    onEditTodo = (index) => {
-        this.props.edit(index)
-    };
-
     render() {
         const { todos } = this.props.todos;
 
@@ -50,7 +46,6 @@ class App extends Component {
                     list={todos}
                     onRemoveItem = { this.onRemoveTodo }
                     onSelectItem = { this.onSelectTodo }
-                    onEditItem   = { this.onEditTodo }
                 />
             </div>
         )

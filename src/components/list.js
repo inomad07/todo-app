@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../actions';
+import axios from 'axios'
 
 class List extends Component {
 
@@ -29,10 +30,6 @@ class List extends Component {
         console.log('saveItm: ', newItem)
     };
 
-    //switchMode = () => {
-    //    alert("hello ");
-    //};
-
     renderItem = (todo) => {
         let isToDoEditable = this.state.editableToDoId;
         if (isToDoEditable  === todo.id)
@@ -56,6 +53,10 @@ class List extends Component {
         const { onRemoveItem } = this.props;
         const { onSelectItem } = this.props;
         console.log(todos);
+
+        axios.get('http://127.0.0.1:3001/api/tasks/all')
+            .then((todos) => console.log(todos.data))
+            .catch((err) => console.log(err));
 
         return (
             <div className="todo-list">

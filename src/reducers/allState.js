@@ -29,6 +29,7 @@ export const allState = (state = initialState, action) => {
     const { type, payload } = action;
 
     switch (type) {
+
         case types.ADD: {
             return {
                 todos: [

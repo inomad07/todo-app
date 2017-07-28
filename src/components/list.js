@@ -11,7 +11,17 @@ class List extends Component {
 
         this.state = {
             text: '',
+            todoList: []
         }
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:3001/api/tasks/all')
+            .then((todos) => {
+                this.setState({
+                    todoList: todos.data
+                });
+            });
     }
 
     onTextChange = (event) => {
@@ -32,7 +42,7 @@ class List extends Component {
 
     renderItem = (todo) => {
         let isToDoEditable = this.state.editableToDoId;
-        if (isToDoEditable  === todo.id)
+        if (isToDoEditable  === todo._id)
             return (
                 <span>
                     <input
@@ -50,23 +60,19 @@ class List extends Component {
 
     render() {
         let todos = this.props.todos;
+        const todoList = this.state.todoList;
         const { onRemoveItem } = this.props;
         const { onSelectItem } = this.props;
         console.log(todos);
-
-        axios.get('http://127.0.0.1:3001/api/tasks/all')
-            .then((todos) => console.log(todos.data))
-            .catch((err) => console.log(err));
-
         return (
             <div className="todo-list">
-                { todos.map(todo => <div className="todo" key={todo.id}
+                { todoList.map(todo => <div className="todo" key={todo._id}
                                          style={ { textDecoration: todo.done ? 'line-through' : 'none'} }>
 
                     {this.renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
 
-                    <button onClick={() => onSelectItem(todo.id)}>Select</button>
-                    <button onClick={() => onRemoveItem(todo.id)}>Delete</button>
+                    <button onClick={() => onSelectItem(todo._id)}>Select</button>
+                    <button onClick={() => onRemoveItem(todo._id)}>Delete</button>
 
                 </div>)}
 

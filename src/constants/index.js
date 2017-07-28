@@ -3,5 +3,6 @@ export default {
     ADD: "ADD",
     REMOVE: "REMOVE",
     SELECT: "SELECT",
-    SAVE: "SAVE"
+    SAVE: "SAVE",
+    LIST: "LIST"
 };

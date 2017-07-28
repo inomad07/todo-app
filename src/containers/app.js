@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { actionCreators } from '../actions'
+import axios from 'axios'
 
 import List from '../components/list'
 import Input from '../components/input'
 import Title from '../components/title'
-
+import { getTodos } from '../helpers/todos';
 
 const styles = {
     container: {
@@ -17,6 +18,15 @@ const styles = {
 
 
 class App extends Component {
+
+    static fetchData(store) {
+        return store.dispatch(getTodos());
+    }
+
+    componentDidMount() {
+        this.props.getTodos;
+    }
+
 
     onAddTodo = (text) => {
         this.props.add(text)

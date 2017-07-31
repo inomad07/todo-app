@@ -37,7 +37,6 @@ export const allState = (state = initialState, action) => {
                         id: ++id,
                         text: action.payload,
                         done: false,
-                        ...todos
                     }
                 ]
             };

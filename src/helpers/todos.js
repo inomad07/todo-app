@@ -7,7 +7,7 @@ export const getTodos = () => (dispatch) => {
         .then((todos) => {
             dispatch({
                 type: types.LIST,
-                todos: todos
+                payload: todos.data
             })
         })
     };

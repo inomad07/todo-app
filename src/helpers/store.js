@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import {allState} from '../reducers/allState'
+import { allState } from '../reducers/allState'
 const events = [];
 const defaultState = {
     events

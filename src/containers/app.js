@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { actionCreators } from '../actions'
+import { add, remove, save, select } from '../actions'
 import axios from 'axios'
-
 import List from '../components/list'
 import Input from '../components/input'
 import Title from '../components/title'
-import { getTodos } from '../helpers/todos';
+//import { getTodos } from '../helpers/todos';
 
 const styles = {
     container: {
@@ -18,14 +17,23 @@ const styles = {
 
 
 class App extends Component {
-
-    static fetchData(store) {
-        return store.dispatch(getTodos());
-    }
-
-    componentDidMount() {
-        this.props.getTodos;
-    }
+    //
+    //constructor(props) {
+    //    super(props);
+    //
+    //    this.state = {
+    //       todoList: []
+    //    }
+    //}
+    //
+    //componentDidMount() {
+    //    axios.get('http://localhost:3001/api/tasks/all')
+    //        .then((todos) => {
+    //            this.setState({
+    //                todoList: todos.data
+    //            });
+    //        });
+    //}
 
 
     onAddTodo = (text) => {
@@ -43,17 +51,18 @@ class App extends Component {
     render() {
         const { todos } = this.props.todos;
 
+        //const todoList = this.state.todoList;
         return (
             <div style = { styles.container }>
                 <Title>
                     To-Do List
                 </Title>
                 <Input
-                    placeholder = {'Type a todo, then hit enter!'}
+                    placeholder     = {'Type a todo, then hit enter!'}
                     onSubmitEditing = { this.onAddTodo }
                 />
                 <List
-                    list={todos}
+                    list         = {todos}
                     onRemoveItem = { this.onRemoveTodo }
                     onSelectItem = { this.onSelectTodo }
                 />
@@ -70,7 +79,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actionCreators, dispatch)
+    return bindActionCreators(add, remove, save, select, dispatch)
 }
 
 

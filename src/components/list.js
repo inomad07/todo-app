@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../actions';
+import { add, remove, save, select } from '../actions';
 import axios from 'axios'
 
 class List extends Component {
@@ -63,7 +63,8 @@ class List extends Component {
         const todoList = this.state.todoList;
         const { onRemoveItem } = this.props;
         const { onSelectItem } = this.props;
-        console.log(todos);
+        console.log('TodoLIST: ', todoList);
+        console.log('Todos: ', todos);
         return (
             <div className="todo-list">
                 { todoList.map(todo => <div className="todo" key={todo._id}
@@ -90,7 +91,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actionCreators, dispatch)
+    return bindActionCreators(add, remove, save, select, dispatch)
 }
 
 

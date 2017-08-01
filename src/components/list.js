@@ -1,19 +1,24 @@
 import React, { Component } from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { add, remove, save, select } from '../actions';
+import { actionCreators} from '../actions';
 import axios from 'axios'
 
 class List extends Component {
 
-    constructor(props) {
-        super(props);
+    //constructor(props) {
+    //    super(props);
+    //
+    //    this.state = {
+    //        text: '',
+    //        todoList: []
+    //    }
+    //}
 
-        this.state = {
-            text: '',
-            todoList: []
-        }
-    }
+    state = {
+        text: '',
+        todoList: []
+    };
 
     componentDidMount() {
         axios.get('http://localhost:3001/api/tasks/all')
@@ -30,8 +35,8 @@ class List extends Component {
     };
 
     editItem = (todo) => {
-        this.setState({editableToDoId: todo.id, text: todo.text});
-        console.log('editItem: ', this.setState({editableToDoId: todo.id, text: todo.text}))
+        this.setState({editableToDoId: todo._id, text: todo.text});
+        console.log('editItem: ', this.setState({editableToDoId: todo._id, text: todo.text}))
     };
 
     saveItem = () => {
@@ -59,12 +64,10 @@ class List extends Component {
     };
 
     render() {
-        let todos = this.props.todos;
         const todoList = this.state.todoList;
         const { onRemoveItem } = this.props;
         const { onSelectItem } = this.props;
-        console.log('TodoLIST: ', todoList);
-        console.log('Todos: ', todos);
+        console.log(todoList);
         return (
             <div className="todo-list">
                 { todoList.map(todo => <div className="todo" key={todo._id}
@@ -91,7 +94,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(add, remove, save, select, dispatch)
+    return bindActionCreators(actionCreators, dispatch)
 }
 
 

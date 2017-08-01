@@ -8,7 +8,6 @@ import './css/style.css';
 import App from './containers/app'
 //import {store} from './helpers/store'
 import {allState} from './reducers/allState'
-//import thunkMiddleware from 'redux-thunk'
 
 const store = createStore(
     allState, applyMiddleware(thunk)

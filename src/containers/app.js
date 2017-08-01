@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { add, remove, save, select } from '../actions'
-import axios from 'axios'
+import { actionCreators } from '../actions'
 import List from '../components/list'
 import Input from '../components/input'
 import Title from '../components/title'
@@ -15,26 +14,7 @@ const styles = {
     }
 };
 
-
 class App extends Component {
-    //
-    //constructor(props) {
-    //    super(props);
-    //
-    //    this.state = {
-    //       todoList: []
-    //    }
-    //}
-    //
-    //componentDidMount() {
-    //    axios.get('http://localhost:3001/api/tasks/all')
-    //        .then((todos) => {
-    //            this.setState({
-    //                todoList: todos.data
-    //            });
-    //        });
-    //}
-
 
     onAddTodo = (text) => {
         this.props.add(text)
@@ -50,8 +30,6 @@ class App extends Component {
 
     render() {
         const { todos } = this.props.todos;
-
-        //const todoList = this.state.todoList;
         return (
             <div style = { styles.container }>
                 <Title>
@@ -79,7 +57,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(add, remove, save, select, dispatch)
+    return bindActionCreators(actionCreators, dispatch)
 }
 
 

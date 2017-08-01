@@ -59,12 +59,12 @@ export const allState = (state = initialState, action) => {
                 todos: todos.map(todo => todo._id === action.payload._id ? { ...todo, text: action.payload.text } : todo)
             };
         }
-        case types.LIST: {
-            return {
-                ...state,
-                todos: action.payload
-            };
-        }
+        //case types.LIST: {
+        //    return {
+        //        ...state,
+        //        todos: action.payload
+        //    };
+        //}
         default:
             return state;
     }

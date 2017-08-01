@@ -2,7 +2,7 @@
 export default {
     ADD: "ADD",
     REMOVE: "REMOVE",
-    SELECT: "SELECT",
+    CROSS_OUT: "CROSS_OUT",
     SAVE: "SAVE",
     //LIST: "LIST"
 };

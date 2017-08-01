@@ -75,7 +75,7 @@ class List extends Component {
 
                     {this.renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
 
-                    <button onClick={() => onSelectItem(todo._id)}>Select</button>
+                    <button onClick={() => onSelectItem(todo._id)}>Toggle</button>
                     <button onClick={() => onRemoveItem(todo._id)}>Delete</button>
 
                 </div>)}

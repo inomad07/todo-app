@@ -25,7 +25,7 @@ class App extends Component {
     };
 
     onSelectTodo = (index) => {
-        this.props.select(index)
+        this.props.crossOut(index)
     };
 
     render() {

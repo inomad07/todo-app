@@ -49,7 +49,7 @@ export const allState = (state = initialState, action) => {
                 todos: todos.filter(todo => todo._id !== payload)
             };
         }
-        case types.SELECT: {
+        case types.CROSS_OUT: {
             return {
                 todos: todos.map(todo => todo._id === action.payload ? { ...todo, done: !todo.done } : todo)
             };

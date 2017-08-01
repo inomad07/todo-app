@@ -44,12 +44,14 @@ export const actionCreators = {
                 text: text,
                 done: false
             })
-            .then ( (todo) =>
-                dispatch({
-                    type: types.ADD,
-                    payload: todo,
-                    done: false
-                })
+            .then ((todos) =>
+                dispatch(
+                    {
+                        type: types.ADD,
+                        payload: todos,
+                        done: false
+                    }
+                )
             )
             .catch((error) => {
                 console.log(error)
@@ -58,24 +60,29 @@ export const actionCreators = {
     remove: (index) => dispatch => {
         return axios.delete(`http://localhost:3001/api/tasks/${index}`)
             .then ((index) => {
-                dispatch({
-                    type: types.REMOVE,
-                    payload: index,
-                    done: false
-                });
+                dispatch(
+                    {
+                        type: types.REMOVE,
+                        payload: index,
+                        done: false
+                    }
+                );
                 console.log('Successfully deleted')
             })
             .catch((error) => {
                 console.log('Cannot remove', error)
             })
     },
-    select: index => dispatch => {
+    crossOut: index => dispatch => {
         return axios.put(`http://localhost:3001/api/tasks/${index}/changeState`)
             .then ((index) => {
-                dispatch({
-                    type: types.SELECT,
-                    payload: index
-                });
+                dispatch(
+                    {
+                        type: types.CROSS_OUT,
+                        payload: index
+                    }
+
+                );
                 console.log('Successfully switched')
             })
             .catch((error) => {
@@ -85,10 +92,12 @@ export const actionCreators = {
     save: (_id, text)=> dispatch => {
         return axios.put(`http://localhost:3001/api/tasks/${_id}`)
             .then ((_id, text) => {
-                dispatch({
-                    type: types.SAVE,
-                    payload: {_id, text}
-                })
+                dispatch(
+                    {
+                        type: types.SAVE,
+                        payload: {_id, text}
+                    }
+                )
             })
             .catch ((error)=> {
                 console.log('Cannot save changes', error)

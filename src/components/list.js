@@ -2,32 +2,33 @@ import React, { Component } from "react";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators} from '../actions';
-import axios from 'axios'
+//import axios from 'axios'
 
 class List extends Component {
 
-    //constructor(props) {
-    //    super(props);
-    //
-    //    this.state = {
-    //        text: '',
-    //        todoList: []
-    //    }
-    //}
+    constructor(props) {
+        super(props);
 
-    state = {
-        text: '',
-        todoList: []
+        this.state = {
+            text: '',
+            todoList: []
+
+        }
     };
 
-    componentDidMount() {
-        axios.get('http://localhost:3001/api/tasks/all')
-            .then((todos) => {
-                this.setState({
-                    todoList: todos.data
-                });
-            });
-    }
+    //state = {
+    //    text: '',
+    //    todoList: []
+    //};
+
+    //componentDidMount() {
+    //    axios.get('http://localhost:3001/api/tasks/all')
+    //        .then((todos) => {
+    //            this.setState({
+    //                todoList: todos.data
+    //            });
+    //        });
+    //}
 
     onTextChange = (event) => {
         this.setState({text: event.target.value});
@@ -64,7 +65,8 @@ class List extends Component {
     };
 
     render() {
-        const todoList = this.state.todoList;
+        const todoList = this.props.list;
+        debugger;
         const { onRemoveItem } = this.props;
         const { onSelectItem } = this.props;
         console.log(todoList);

@@ -16,6 +16,20 @@ const styles = {
 
 class App extends Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+
+        }
+    }
+
+    componentDidMount() {
+        this.props.actionCreators.fetch()
+    }
+
+
+
+
     onAddTodo = (text) => {
         this.props.add(text)
     };
@@ -29,7 +43,11 @@ class App extends Component {
     };
 
     render() {
-        const { todos } = this.props.todos;
+
+        const allState =  this.props.todoList.todos;
+        debugger;
+        console.log('this.props.todoList',this.props.todoList)
+
         return (
             <div style = { styles.container }>
                 <Title>
@@ -40,7 +58,7 @@ class App extends Component {
                     onSubmitEditing = { this.onAddTodo }
                 />
                 <List
-                    list         = {todos}
+                    list         = { allState }
                     onRemoveItem = { this.onRemoveTodo }
                     onSelectItem = { this.onSelectTodo }
                 />
@@ -52,7 +70,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        todos: state.todos
+        todoList: state.todoList
+
     }
 }
 

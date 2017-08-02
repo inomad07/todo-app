@@ -37,10 +37,30 @@ import axios from 'axios'
 //    }
 //
 //};
+const apiUrl = 'http://localhost:3001/api/tasks/all';
+
+export const fetchTodosSuccess = (todos) => {
+    return {
+        type: types.FETCH,
+        todos
+    }
+};
 
 export const actionCreators = {
+    fetch: (todos) => {
+        return (dispatch) => {
+            return axios.get(apiUrl)
+                .then((todos) => {
+                    console.log('todos', todos.data)
+                    dispatch(fetchTodosSuccess(todos.data));
+                })
+                .catch((error) => {
+                    console.log('Cannot fetch', error)
+                })
+        }
+    },
     add: (text) => dispatch => {
-        return axios.post(`http://localhost:3001/api/tasks/`, {
+        axios.post(`http://localhost:3001/api/tasks/`, {
                 text: text,
                 done: false
             })
@@ -58,7 +78,7 @@ export const actionCreators = {
             })
     },
     remove: (index) => dispatch => {
-        return axios.delete(`http://localhost:3001/api/tasks/${index}`)
+        axios.delete(`http://localhost:3001/api/tasks/${index}`)
             .then ((index) => {
                 dispatch(
                     {
@@ -74,7 +94,7 @@ export const actionCreators = {
             })
     },
     crossOut: index => dispatch => {
-        return axios.put(`http://localhost:3001/api/tasks/${index}/changeState`)
+        axios.put(`http://localhost:3001/api/tasks/${index}/changeState`)
             .then ((index) => {
                 dispatch(
                     {
@@ -90,7 +110,7 @@ export const actionCreators = {
             })
     },
     save: (_id, text)=> dispatch => {
-        return axios.put(`http://localhost:3001/api/tasks/${_id}`)
+        axios.put(`http://localhost:3001/api/tasks/${_id}`)
             .then ((_id, text) => {
                 dispatch(
                     {

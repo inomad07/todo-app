@@ -6,7 +6,7 @@ export const getTodos = () => (dispatch) => {
     return axios.get('http://localhost:3001/api/tasks/all')
         .then((todos) => {
             dispatch({
-                type: types.LIST,
+                //type: types.LIST,
                 payload: todos.data
             })
         })

@@ -4,5 +4,5 @@ export default {
     REMOVE: "REMOVE",
     CROSS_OUT: "CROSS_OUT",
     SAVE: "SAVE",
-    //LIST: "LIST"
+    FETCH: "FETCH"
 };

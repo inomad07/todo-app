@@ -15,19 +15,20 @@ class List extends Component {
     };
 
     onTextChange = (event) => {
-        this.setState({text: event.target.value});
-        console.log('onTextChange: ', this.setState({text: event.target.value}))
+        let textChange = this.setState({ text: event.target.value });
+        console.log('onTextChange: ', textChange);
     };
 
     editItem = (todo) => {
-        this.setState({editableToDoId: todo._id, text: todo.text});
-        console.log('editItem: ', this.setState({editableToDoId: todo._id, text: todo.text}))
+        let editTodo = this.setState({editableToDoId: todo._id, text: todo.text});
+        console.log('editItem: ', editTodo);
     };
 
     saveItem = () => {
-        let newItem = this.props.save(this.state.editableToDoId, this.state.text);
-        this.setState({editableToDoId: '', text: ''});
-        console.log('saveItm: ', newItem)
+        let newTodo = this.props.save(this.state.editableToDoId, this.state.text);
+        this.setState({ editableToDoId: '', text: '' });
+        console.log('saveItm: ', newTodo);
+        debugger;
     };
 
     renderItem = (todo) => {
@@ -52,14 +53,12 @@ class List extends Component {
         const todoList = this.props.list;
         const { onRemoveItem } = this.props;
         const { onSelectItem } = this.props;
-        console.log(todoList);
         return (
             <div className="todo-list">
                 { todoList.map(todo => <div className="todo" key={todo._id}
                                          style={ { textDecoration: todo.done ? 'line-through' : 'none'} }>
 
                     {this.renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
-
                     <button onClick={() => onSelectItem(todo._id)}>Toggle</button>
                     <button onClick={() => onRemoveItem(todo._id)}>Delete</button>
 

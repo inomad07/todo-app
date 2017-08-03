@@ -35,41 +35,45 @@ export const allState = (state = initialData, action) => {
         }
         case types.ADD:
         {
-            return [
-                ...state.todos,
-                Object.assign({}, action.todo)
-            ];
+            return {
+                todos: [
+                    ...state.todos,
+                    Object.assign({}, action.todo)
+                ]
+            }
         }
         case types.CROSS_OUT:
         {
-            state;
-
             const stateObj = Object.assign({}, state, { todos: state.todos.map((todo) => {
                 if (todo._id === action.todo._id) {
-                    const todoObj = Object.assign({}, todo, {done: !todo.done});
+                    const todoObj = Object.assign({}, todo, { done: !todo.done });
                     return todoObj;
                 }
-
                 return todo;
             })});
 
             return stateObj;
         }
-        //case types.REMOVE:
-        //{
-        //    return [
-        //        ...state,
-        //        todos.filter(todo => todo._id !== payload)
-        //    ]
-        //
-        //
-        //}
-        //case types.SAVE:
-        //{
-        //    return {
-        //        todos: todos.map(todo => todo._id === action.payload._id ? {...todo, text: action.payload.text} : todo)
-        //    };
-        //}
+        case types.SAVE:
+        {
+            var todos = state.todos.map((todo) => {
+                if (todo._id === action.todo.id) {
+                    const todoOb = Object.assign({}, todo, { text: action.todo.text });
+                    console.log(action.todo.id);
+                    return todoOb
+                }
+                return todo;
+            });
+            const stateOb = Object.assign({}, state, { todos: todos });
+            console.log('stateOb:', stateOb);
+            return stateOb;
+        }
+        case types.REMOVE:
+        {
+           return {
+               todos: state.todos.filter((todo) => todo._id !== action.todoId)
+           }
+        }
         default:
             return state;
     }

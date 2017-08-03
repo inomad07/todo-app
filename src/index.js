@@ -8,7 +8,6 @@ import configureStore from './helpers/configureStore'
 
 const store = configureStore();
 store.dispatch(actionCreators.fetch());
-console.log('store', store);
 
 render(
     <Provider store={store}>

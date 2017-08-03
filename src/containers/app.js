@@ -23,11 +23,10 @@ class App extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props;
-        this.props.fetch()
-    }
-
+    //componentDidMount() {
+    //    this.props;
+    //    this.props.fetch()
+    //}
 
     onAddTodo = (text) => {
         this.props.add(text)
@@ -43,7 +42,7 @@ class App extends Component {
 
     render() {
         const allState =  this.props.todoList.todos;
-        console.log('this.props.todoList',this.props.todoList);
+        //debugger;
 
         return (
             <div style = { styles.container }>
@@ -68,7 +67,6 @@ class App extends Component {
 function mapStateToProps(state) {
     return {
         todoList: state.todoList
-
     }
 }
 

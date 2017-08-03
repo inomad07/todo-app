@@ -25,10 +25,8 @@ class List extends Component {
     };
 
     saveItem = () => {
-        let newTodo = this.props.save(this.state.editableToDoId, this.state.text);
+        this.props.save(this.state.editableToDoId, this.state.text);
         this.setState({ editableToDoId: '', text: '' });
-        console.log('saveItm: ', newTodo);
-        debugger;
     };
 
     renderItem = (todo) => {

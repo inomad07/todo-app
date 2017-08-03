@@ -56,14 +56,15 @@ export const allState = (state = initialData, action) => {
         }
         case types.SAVE:
         {
-            var todos = state.todos.map((todo) => {
-                if (todo._id === action.todo.id) {
+            const todos = state.todos.map((todo) => {
+                if (todo._id === action.todo._id) {
                     const todoOb = Object.assign({}, todo, { text: action.todo.text });
-                    console.log(action.todo.id);
+                    console.log(action.todo._id);
                     return todoOb
                 }
                 return todo;
             });
+            console.log(todos);
             const stateOb = Object.assign({}, state, { todos: todos });
             console.log('stateOb:', stateOb);
             return stateOb;

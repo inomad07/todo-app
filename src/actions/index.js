@@ -52,10 +52,10 @@ export const changeState = (todo) => {
     }
 };
 
-export const updateTodo = (text) => {
+export const updateTodo = (todo) => {
     return {
         type: types.SAVE,
-        text
+        todo
     }
 };
 
@@ -104,9 +104,9 @@ export const actionCreators = {
                 })
         }
     },
-    save: index => {
+    save: (todoId, text) => {
         return (dispatch) => {
-            return axios.put(`http://localhost:3001/api/tasks/${index}`)
+            return axios.put(`http://localhost:3001/api/tasks/${todoId}`, { text })
                 .then((todo) => {
                     dispatch(updateTodo(todo.data));
                     console.log('Successfully updated')

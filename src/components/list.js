@@ -10,25 +10,9 @@ class List extends Component {
         super(props);
 
         this.state = {
-            text: '',
-            todoList: []
-
+            text: ''
         }
     };
-
-    //state = {
-    //    text: '',
-    //    todoList: []
-    //};
-
-    //componentDidMount() {
-    //    axios.get('http://localhost:3001/api/tasks/all')
-    //        .then((todos) => {
-    //            this.setState({
-    //                todoList: todos.data
-    //            });
-    //        });
-    //}
 
     onTextChange = (event) => {
         this.setState({text: event.target.value});
@@ -66,7 +50,6 @@ class List extends Component {
 
     render() {
         const todoList = this.props.list;
-        debugger;
         const { onRemoveItem } = this.props;
         const { onSelectItem } = this.props;
         console.log(todoList);

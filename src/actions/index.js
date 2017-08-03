@@ -46,12 +46,27 @@ export const fetchTodosSuccess = (todos) => {
     }
 };
 
+export const createTodo = (todo) => {
+    return {
+        type: types.ADD,
+        todo
+    }
+};
+
+
+export const changeState = (todo) => {
+    return {
+        type: types.CROSS_OUT,
+        todo
+    }
+};
+
 export const actionCreators = {
     fetch: (todos) => {
         return (dispatch) => {
             return axios.get(apiUrl)
                 .then((todos) => {
-                    console.log('todos', todos.data)
+                    console.log('todos', todos.data);
                     dispatch(fetchTodosSuccess(todos.data));
                 })
                 .catch((error) => {
@@ -59,68 +74,62 @@ export const actionCreators = {
                 })
         }
     },
-    add: (text) => dispatch => {
-        axios.post(`http://localhost:3001/api/tasks/`, {
-                text: text,
-                done: false
-            })
-            .then ((todos) =>
-                dispatch(
-                    {
-                        type: types.ADD,
-                        payload: todos,
-                        done: false
-                    }
+    add: (text) => {
+        return (dispatch) => {
+            return axios.post(`http://localhost:3001/api/tasks/`, {
+                    text: text,
+                    done: false
+                })
+                .then((todo) =>
+                    dispatch(createTodo(todo.data))
                 )
-            )
-            .catch((error) => {
-                console.log(error)
-            })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
     },
-    remove: (index) => dispatch => {
-        axios.delete(`http://localhost:3001/api/tasks/${index}`)
-            .then ((index) => {
-                dispatch(
-                    {
-                        type: types.REMOVE,
-                        payload: index,
-                        done: false
-                    }
-                );
-                console.log('Successfully deleted')
-            })
-            .catch((error) => {
-                console.log('Cannot remove', error)
-            })
-    },
-    crossOut: index => dispatch => {
-        axios.put(`http://localhost:3001/api/tasks/${index}/changeState`)
-            .then ((index) => {
-                dispatch(
-                    {
-                        type: types.CROSS_OUT,
-                        payload: index
-                    }
 
-                );
-                console.log('Successfully switched')
-            })
-            .catch((error) => {
-                console.log('Cannot switch', error)
-            })
+    crossOut: index => {
+        return (dispatch) => {
+            return axios.put(`http://localhost:3001/api/tasks/${index}/changeState`)
+                .then((todo) => {
+                    dispatch(changeState(todo.data));
+                    console.log('Successfully switched')
+                })
+                .catch((error) => {
+                    console.log('Cannot switch', error)
+                })
+        }
     },
-    save: (_id, text)=> dispatch => {
-        axios.put(`http://localhost:3001/api/tasks/${_id}`)
-            .then ((_id, text) => {
-                dispatch(
-                    {
-                        type: types.SAVE,
-                        payload: {_id, text}
-                    }
-                )
-            })
-            .catch ((error)=> {
-                console.log('Cannot save changes', error)
-            })
-    }
+    //remove: (index) => dispatch => {
+    //    axios.delete(`http://localhost:3001/api/tasks/${index}`)
+    //        .then((index) => {
+    //            dispatch(
+    //                {
+    //                    type: types.REMOVE,
+    //                    payload: index,
+    //                    done: false
+    //                }
+    //            );
+    //            console.log('Successfully deleted')
+    //        })
+    //        .catch((error) => {
+    //            console.log('Cannot remove', error)
+    //        })
+    //},
+
+    //save: (_id, text)=> dispatch => {
+    //    axios.put(`http://localhost:3001/api/tasks/${_id}`)
+    //        .then((_id, text) => {
+    //            dispatch(
+    //                {
+    //                    type: types.SAVE,
+    //                    payload: {_id, text}
+    //                }
+    //            )
+    //        })
+    //        .catch((error)=> {
+    //            console.log('Cannot save changes', error)
+    //        })
+    //}
 };

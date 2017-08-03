@@ -24,10 +24,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.props.actionCreators.fetch()
+        this.props;
+        this.props.fetch()
     }
-
-
 
 
     onAddTodo = (text) => {
@@ -43,10 +42,8 @@ class App extends Component {
     };
 
     render() {
-
         const allState =  this.props.todoList.todos;
-        debugger;
-        console.log('this.props.todoList',this.props.todoList)
+        console.log('this.props.todoList',this.props.todoList);
 
         return (
             <div style = { styles.container }>

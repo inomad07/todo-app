@@ -3,32 +3,6 @@ import axios from 'axios'
 
 // Helper functions to dispatch actions, optionally with payloads
 
-//export const actionCreators = {
-//    add: item => {
-//        return {
-//            type: types.ADD,
-//            payload: item
-//        };
-//    },
-//    remove: index => {
-//        return {
-//            type: types.REMOVE,
-//            payload: index
-//        };
-//    },
-//    select: index => {
-//        return {
-//            type: types.SELECT,
-//            payload: index
-//        };
-//    },
-//    save: (_id, text)=> {
-//        return {
-//            type: types.SAVE,
-//            payload: {_id, text}
-//        }
-//    },
-//};
 const apiUrl = 'http://localhost:3001/api/tasks/all';
 
 export const fetchTodosSuccess = (todos) => {
@@ -127,6 +101,5 @@ export const actionCreators = {
                 console.log('Cannot remove', error)
             })
     }
-
 
 };

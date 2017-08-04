@@ -5,7 +5,6 @@ import { actionCreators } from '../actions'
 import List from '../components/list'
 import Input from '../components/input'
 import Title from '../components/title'
-//import { getTodos } from '../helpers/todos';
 
 const styles = {
     container: {
@@ -23,11 +22,6 @@ class App extends Component {
         }
     }
 
-    //componentDidMount() {
-    //    this.props;
-    //    this.props.fetch()
-    //}
-
     onAddTodo = (text) => {
         this.props.add(text)
     };
@@ -42,8 +36,6 @@ class App extends Component {
 
     render() {
         const allState =  this.props.todoList.todos;
-        //debugger;
-
         return (
             <div style = { styles.container }>
                 <Title>

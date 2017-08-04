@@ -1,26 +1,5 @@
 import types from '../constants'
 
-// Initial state of the store
-//const initialState = {
-//    todos: [
-//        {
-//            id: 1,
-//            text: 'Hello World!',
-//            done: false
-//        },
-//        {
-//            id: 2,
-//            text: 'Hola Mundo!',
-//            done: false
-//        },
-//        {
-//            id: 3,
-//            text: 'Привет Мир!',
-//            done: true
-//        },
-//    ]
-//};
-
 const initialData = {
     todos: []
 };
@@ -59,15 +38,12 @@ export const allState = (state = initialData, action) => {
             const todos = state.todos.map((todo) => {
                 if (todo._id === action.todo._id) {
                     const todoOb = Object.assign({}, todo, { text: action.todo.text });
-                    console.log(action.todo._id);
                     return todoOb
                 }
                 return todo;
             });
-            console.log(todos);
-            const stateOb = Object.assign({}, state, { todos: todos });
-            console.log('stateOb:', stateOb);
-            return stateOb;
+           const stateOb = Object.assign({}, state, { todos: todos });
+           return stateOb;
         }
         case types.REMOVE:
         {
@@ -78,5 +54,4 @@ export const allState = (state = initialData, action) => {
         default:
             return state;
     }
-
 };

@@ -53,7 +53,7 @@ class List extends Component {
         return (
             <div className="todo-list">
                 { todoList.map(todo => <div className="todo" key={todo._id}
-                                         style={ { textDecoration: todo.done ? 'line-through' : 'none'} }>
+                                         style={ { textDecoration: todo.toggle ? 'line-through' : 'none'} }>
 
                     {this.renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
                     <button onClick={() => onSelectItem(todo._id)}>Toggle</button>

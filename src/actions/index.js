@@ -56,7 +56,7 @@ export const actionCreators = {
         return (dispatch) => {
             return axios.post(`http://localhost:3001/api/`, {
                     text: text,
-                    done: false
+                    toggle: false
                 })
                 .then((todo) =>
                     dispatch(createTodo(todo.data))

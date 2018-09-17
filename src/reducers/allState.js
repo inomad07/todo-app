@@ -25,7 +25,7 @@ export const allState = (state = initialData, action) => {
         {
             const stateObj = Object.assign({}, state, { todos: state.todos.map((todo) => {
                 if (todo._id === action.todo._id) {
-                    const todoObj = Object.assign({}, todo, { done: !todo.done });
+                    const todoObj = Object.assign({}, todo, { toggle: !todo.toggle });
                     return todoObj;
                 }
                 return todo;

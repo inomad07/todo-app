@@ -68,7 +68,7 @@ export const actionCreators = {
     },
     crossOut: index => {
         return (dispatch) => {
-            return axios.put(`${apiUrl}/${index}/changeState`)
+            return axios.put(`${apiUrl}/${index}/toggle`)
                 .then((todo) => {
                     dispatch(changeState(todo.data));
                     console.log('Successfully switched')

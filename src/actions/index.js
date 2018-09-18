@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // Helper functions to dispatch actions, optionally with payloads
 
-const apiUrl = 'http://localhost:3001/api/all';
+const apiUrl = 'http://localhost:3001/api';
 
 export const fetchTodosSuccess = (todos) => {
     return {
@@ -43,7 +43,7 @@ export const removeTodo = (todoId) => {
 export const actionCreators = {
     fetch: (todos) => {
         return (dispatch) => {
-            return axios.get(apiUrl)
+            return axios.get(`${apiUrl}/all`)
                 .then((todos) => {
                     dispatch(fetchTodosSuccess(todos.data));
                 })
@@ -54,7 +54,7 @@ export const actionCreators = {
     },
     add: (text) => {
         return (dispatch) => {
-            return axios.post(`http://localhost:3001/api/`, {
+            return axios.post(`${apiUrl}`, {
                     text: text,
                     toggle: false
                 })
@@ -68,7 +68,7 @@ export const actionCreators = {
     },
     crossOut: index => {
         return (dispatch) => {
-            return axios.put(`http://localhost:3001/api/${index}/changeState`)
+            return axios.put(`${apiUrl}/${index}/changeState`)
                 .then((todo) => {
                     dispatch(changeState(todo.data));
                     console.log('Successfully switched')
@@ -80,7 +80,7 @@ export const actionCreators = {
     },
     save: (todoId, text) => {
         return (dispatch) => {
-            return axios.put(`http://localhost:3001/api/${todoId}`, { text })
+            return axios.put(`${apiUrl}/${todoId}`, { text })
                 .then((todo) => {
                     dispatch(updateTodo(todo.data));
                     console.log('Successfully updated')
@@ -92,7 +92,7 @@ export const actionCreators = {
     },
 
     remove: (index) => dispatch => {
-        axios.delete(`http://localhost:3001/api/${index}`)
+        axios.delete(`${apiUrl}/${index}`)
             .then((msg) => {
                 dispatch(removeTodo(index));
                 console.log('Successfully deleted')

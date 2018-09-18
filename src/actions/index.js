@@ -90,7 +90,6 @@ export const actionCreators = {
                 })
         }
     },
-
     remove: (index) => dispatch => {
         axios.delete(`${apiUrl}/${index}`)
             .then((msg) => {

@@ -17,7 +17,7 @@ export const allState = (state = initialData, action) => {
             return {
                 todos: [
                     ...state.todos,
-                    Object.assign({}, action.todo)
+                    Object.assign({}, action.todo.body)
                 ]
             }
         }
@@ -36,8 +36,8 @@ export const allState = (state = initialData, action) => {
         case types.SAVE:
         {
             const todos = state.todos.map((todo) => {
-                if (todo._id === action.todo._id) {
-                    const todoOb = Object.assign({}, todo, { text: action.todo.text });
+                if (todo._id === action.todo.body._id) {
+                    const todoOb = Object.assign({}, todo, { text: action.todo.body.text });
                     return todoOb
                 }
                 return todo;

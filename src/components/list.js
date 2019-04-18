@@ -43,13 +43,13 @@ class List extends Component {
     };
 
     render() {
-        const todoList = this.props.list;
+        const { list } = this.props;
         const { onRemoveItem } = this.props;
         const { onToggleItem } = this.props;
 
         return (
             <div className="todo-list">
-                { todoList.map(todo => <div className="todo" key={todo._id}
+                { list.map(todo => <div className="todo" key={todo._id}
                                          style={ { textDecoration: todo.toggle ? 'line-through' : 'none'} }>
                     {this.renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
                     <button onClick={() => onToggleItem(todo._id)}>Toggle</button>

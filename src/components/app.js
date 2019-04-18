@@ -26,8 +26,8 @@ class App extends Component {
         this.props.add(text)
     };
 
-    onRemoveTodo = (index) => {
-        this.props.remove(index)
+    onRemoveTodo = (id) => {
+        this.props.remove(id)
     };
 
     onToggleTodo = (id) => {

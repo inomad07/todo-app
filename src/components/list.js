@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { actionCreators} from '../actions';
 
 class List extends Component {
 
@@ -14,17 +11,16 @@ class List extends Component {
     };
 
     onTextChange = (event) => {
-        let textChange = this.setState({ text: event.target.value });
-        console.log('onTextChange: ', textChange);
+        this.setState({ text: event.target.value });
     };
 
     editItem = (todo) => {
-        let editTodo = this.setState({editableToDoId: todo._id, text: todo.text});
-        console.log('editItem: ', editTodo);
+        this.setState({editableToDoId: todo._id, text: todo.text});
     };
 
     saveItem = () => {
-        this.props.save(this.state.editableToDoId, this.state.text);
+        const { onSaveItem } = this.props;
+        onSaveItem(this.state.editableToDoId, this.state.text);
         this.setState({ editableToDoId: '', text: '' });
     };
 
@@ -49,15 +45,15 @@ class List extends Component {
     render() {
         const todoList = this.props.list;
         const { onRemoveItem } = this.props;
-        const { onSelectItem } = this.props;
+        const { onToggleItem } = this.props;
+
         return (
             <div className="todo-list">
                 { todoList.map(todo => <div className="todo" key={todo._id}
                                          style={ { textDecoration: todo.toggle ? 'line-through' : 'none'} }>
                     {this.renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button onClick={() => onSelectItem(todo._id)}>Toggle</button>
+                    <button onClick={() => onToggleItem(todo._id)}>Toggle</button>
                     <button onClick={() => onRemoveItem(todo._id)}>Delete</button>
-
                 </div>)}
 
             </div>
@@ -67,15 +63,4 @@ class List extends Component {
 }
 
 
-function mapStateToProps(state) {
-    return {
-        todos: state.todos
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actionCreators, dispatch)
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default List;

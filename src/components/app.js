@@ -30,8 +30,12 @@ class App extends Component {
         this.props.remove(index)
     };
 
-    onSelectTodo = (index) => {
-        this.props.crossOut(index)
+    onToggleTodo = (id) => {
+        this.props.crossOut(id)
+    };
+
+    onSaveTodo = (id, text) => {
+        this.props.save(id, text)
     };
 
     render() {
@@ -48,7 +52,8 @@ class App extends Component {
                 <List
                     list         = { todoList }
                     onRemoveItem = { this.onRemoveTodo }
-                    onSelectItem = { this.onSelectTodo }
+                    onToggleItem = { this.onToggleTodo }
+                    onSaveItem   = { this.onSaveTodo }
                 />
             </div>
         )

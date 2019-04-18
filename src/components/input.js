@@ -15,7 +15,6 @@ export default class Input extends Component {
     };
 
     handleChange = (e) => {
-        console.log(e);
         this.setState({ value: e.target.value });
     };
 

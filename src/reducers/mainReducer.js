@@ -6,7 +6,7 @@ const initialData = {
 
 export const mainReducer = (state = initialData, action) => {
     switch (action.type) {
-        case types.FETCH:
+        case types.GET_ALL:
         {
             return {
                 todos: action.todos
@@ -21,7 +21,7 @@ export const mainReducer = (state = initialData, action) => {
                 ]
             }
         }
-        case types.CROSS_OUT:
+        case types.TOGGLE:
         {
             const stateObj = Object.assign({}, state, {
                 todos: state.todos.map((todo) => {
@@ -35,7 +35,7 @@ export const mainReducer = (state = initialData, action) => {
 
             return stateObj;
         }
-        case types.SAVE:
+        case types.UPDATE:
         {
             const todos = state.todos.map((todo) => {
                 if (todo._id === action.todo.body._id) {

@@ -2,9 +2,9 @@ import types from '../constants'
 import TodoService from '../services'
 // Helper functions to dispatch actions, optionally with payloads
 
-export const fetchTodosSuccess = (todos) => {
+export const getTodoList = (todos) => {
     return {
-        type: types.FETCH,
+        type: types.GET_ALL,
         todos
     }
 };
@@ -18,14 +18,14 @@ export const createTodo = (todo) => {
 
 export const changeState = (todo) => {
     return {
-        type: types.CROSS_OUT,
+        type: types.TOGGLE,
         todo
     }
 };
 
 export const updateTodo = (todo) => {
     return {
-        type: types.SAVE,
+        type: types.UPDATE,
         todo
     }
 };
@@ -42,7 +42,7 @@ export const actionCreators = {
         return (dispatch) => {
             return TodoService.getAll()
                 .then((res) => {
-                    dispatch(fetchTodosSuccess(res.data));
+                    dispatch(getTodoList(res.data));
                 })
                 .catch((error) => {
                     console.log('Cannot fetch', error)

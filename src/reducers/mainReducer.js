@@ -4,7 +4,7 @@ const initialData = {
     todos: []
 };
 
-export const allState = (state = initialData, action) => {
+export const mainReducer = (state = initialData, action) => {
     switch (action.type) {
         case types.FETCH:
         {

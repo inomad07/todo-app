@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { allState } from './allState'
+import { mainReducer } from './mainReducer'
 
 export default combineReducers({
-    todoList: allState
+    mainReducer
 });

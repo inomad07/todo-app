@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { actionCreators } from '../actions'
-import List from '../components/list'
-import Input from '../components/input'
-import Title from '../components/title'
+import List from './list'
+import Input from './input'
+import Title from './title'
 
 const styles = {
     container: {
@@ -35,7 +35,7 @@ class App extends Component {
     };
 
     render() {
-        const allState =  this.props.todoList.todos;
+        const todoList =  this.props.todoList.todos;
         return (
             <div style = { styles.container }>
                 <Title>
@@ -46,7 +46,7 @@ class App extends Component {
                     onSubmitEditing = { this.onAddTodo }
                 />
                 <List
-                    list         = { allState }
+                    list         = { todoList }
                     onRemoveItem = { this.onRemoveTodo }
                     onSelectItem = { this.onSelectTodo }
                 />
@@ -58,7 +58,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        todoList: state.todoList
+        todoList: state.mainReducer
     }
 }
 

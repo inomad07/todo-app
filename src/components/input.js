@@ -14,11 +14,12 @@ export default class Input extends Component {
         value: ""
     };
 
-    handleChange = e => {
+    handleChange = (e) => {
+        console.log(e);
         this.setState({ value: e.target.value });
     };
 
-    handleKeyPress = e => {
+    handleKeyPress = (e) => {
         if (e.key !== "Enter") return;
 
         const { onSubmitEditing } = this.props;

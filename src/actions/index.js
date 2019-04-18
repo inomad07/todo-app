@@ -42,13 +42,12 @@ export const removeTodo = (todoId) => {
 
 export const actionCreators = {
     getAll: (data) => {
-        console.log(data);
         return {
             type: types.FETCH,
             todos: data
         }
     },
-    fetch: (todos) => {
+    fetch: () => {
         return (dispatch) => {
             return axios.get(`${apiUrl}/all`)
                 .then((res) => {

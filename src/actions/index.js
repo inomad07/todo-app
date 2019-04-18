@@ -1,9 +1,6 @@
 import types from '../constants'
-import axios from 'axios'
-
+import TodoService from '../services'
 // Helper functions to dispatch actions, optionally with payloads
-
-const apiUrl = 'http://localhost:3001/api';
 
 export const fetchTodosSuccess = (todos) => {
     return {
@@ -41,15 +38,9 @@ export const removeTodo = (todoId) => {
 };
 
 export const actionCreators = {
-    getAll: (data) => {
-        return {
-            type: types.FETCH,
-            todos: data
-        }
-    },
-    fetch: () => {
+    getAll: () => {
         return (dispatch) => {
-            return axios.get(`${apiUrl}/all`)
+            return TodoService.getAll()
                 .then((res) => {
                     dispatch(fetchTodosSuccess(res.data));
                 })
@@ -60,10 +51,7 @@ export const actionCreators = {
     },
     add: (text) => {
         return (dispatch) => {
-            return axios.post(`${apiUrl}`, {
-                    text: text,
-                    toggle: false
-                })
+            return TodoService.add(text)
                 .then((res) =>
                     dispatch(createTodo(res.data))
                 )
@@ -72,39 +60,38 @@ export const actionCreators = {
                 })
         }
     },
-    crossOut: index => {
+    toggle: (id) => {
         return (dispatch) => {
-            return axios.put(`${apiUrl}/${index}/toggle`)
+            return TodoService.toggle(id)
                 .then((res) => {
                     dispatch(changeState(res.data));
-                    console.log('Successfully toggled')
                 })
                 .catch((error) => {
                     console.log('Cannot toggle', error)
                 })
         }
     },
-    save: (id, text) => {
+    update: (id, text) => {
         return (dispatch) => {
-            return axios.put(`${apiUrl}/${id}`, { text })
+            return TodoService.update(id, text)
                 .then((res) => {
                     dispatch(updateTodo(res.data));
-                    console.log('Successfully updated')
                 })
                 .catch((error)=> {
                     console.log('Cannot update', error)
                 })
         }
     },
-    remove: (id) => dispatch => {
-        axios.delete(`${apiUrl}/${id}`)
-            .then((res) => {
-                dispatch(removeTodo(id));
-                console.log('Successfully deleted')
-            })
-            .catch((error) => {
-                console.log('Cannot remove', error)
-            })
+    remove: (id) => {
+        return dispatch => {
+            return TodoService.remove(id)
+                .then((res) => {
+                    dispatch(removeTodo(res));
+                })
+                .catch((error) => {
+                    console.log('Cannot remove', error)
+                })
+        }
     }
 
 };

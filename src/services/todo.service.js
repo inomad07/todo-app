@@ -1,20 +1,60 @@
 import axios from 'axios';
 import config from '../config/api.config';
-import { actionCreators } from '../actions'
 
 const api = `${config.protocol}://${config.host}/api`;
 
 class TodoService {
     static getAll() {
-        return (dispatch) => {
-            return axios.get(`${api}/all`)
-                .then((res) => {
-                    dispatch(actionCreators.getAll(res.data));
-                })
-                .catch((error) => {
-                    console.log('Cannot fetch', error)
-                })
-        }
+        return axios.get(`${api}/all`)
+            .then((res) => {
+                return res;
+            })
+            .catch((err) => {
+                console.log('Cannot fetch', err)
+            })
+    }
+
+    static add(text) {
+        return axios.post(`${api}`, {
+            text: text,
+            toggle: false
+        })
+            .then((res) => {
+                return res;
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+    static toggle(id) {
+        return axios.put(`${api}/${id}/toggle`)
+            .then((res) => {
+                return res;
+            })
+            .catch((error) => {
+                console.log('Cannot toggle', error)
+            })
+    }
+
+    static update(id, text){
+        return axios.put(`${api}/${id}`, { text })
+            .then((res) => {
+                return res;
+            })
+            .catch((error)=> {
+                console.log('Cannot update', error)
+            })
+    }
+
+    static remove(id) {
+        return axios.delete(`${api}/${id}`)
+            .then((res) => {
+                return id;
+            })
+            .catch((error) => {
+                console.log('Cannot remove', error)
+            })
     }
 }
 

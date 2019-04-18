@@ -31,11 +31,11 @@ class App extends Component {
     };
 
     onToggleTodo = (id) => {
-        this.props.crossOut(id)
+        this.props.toggle(id)
     };
 
-    onSaveTodo = (id, text) => {
-        this.props.save(id, text)
+    onUpdateTodo = (id, text) => {
+        this.props.update(id, text)
     };
 
     render() {
@@ -53,7 +53,7 @@ class App extends Component {
                     list         = { todoList }
                     onRemoveItem = { this.onRemoveTodo }
                     onToggleItem = { this.onToggleTodo }
-                    onSaveItem   = { this.onSaveTodo }
+                    onUpdateItem   = { this.onUpdateTodo }
                 />
             </div>
         )

@@ -19,8 +19,8 @@ class List extends Component {
     };
 
     saveItem = () => {
-        const { onSaveItem } = this.props;
-        onSaveItem(this.state.editableToDoId, this.state.text);
+        const { onUpdateItem } = this.props;
+        onUpdateItem(this.state.editableToDoId, this.state.text);
         this.setState({ editableToDoId: '', text: '' });
     };
 
@@ -33,9 +33,7 @@ class List extends Component {
                         type="text"
                         value={this.state.text}
                         onChange={this.onTextChange}/>
-                    <button
-                        onClick={this.saveItem}>Save
-                    </button>
+                    <button onClick={this.saveItem}>Update</button>
                 </span>
             );
 

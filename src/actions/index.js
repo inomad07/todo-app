@@ -41,11 +41,18 @@ export const removeTodo = (todoId) => {
 };
 
 export const actionCreators = {
+    getAll: (data) => {
+        console.log(data);
+        return {
+            type: types.FETCH,
+            todos: data
+        }
+    },
     fetch: (todos) => {
         return (dispatch) => {
             return axios.get(`${apiUrl}/all`)
-                .then((todos) => {
-                    dispatch(fetchTodosSuccess(todos.data));
+                .then((res) => {
+                    dispatch(fetchTodosSuccess(res.data));
                 })
                 .catch((error) => {
                     console.log('Cannot fetch', error)
@@ -58,8 +65,8 @@ export const actionCreators = {
                     text: text,
                     toggle: false
                 })
-                .then((todo) =>
-                    dispatch(createTodo(todo.data))
+                .then((res) =>
+                    dispatch(createTodo(res.data))
                 )
                 .catch((error) => {
                     console.log(error)
@@ -69,20 +76,20 @@ export const actionCreators = {
     crossOut: index => {
         return (dispatch) => {
             return axios.put(`${apiUrl}/${index}/toggle`)
-                .then((todo) => {
-                    dispatch(changeState(todo.data));
-                    console.log('Successfully switched')
+                .then((res) => {
+                    dispatch(changeState(res.data));
+                    console.log('Successfully toggled')
                 })
                 .catch((error) => {
-                    console.log('Cannot switch', error)
+                    console.log('Cannot toggle', error)
                 })
         }
     },
-    save: (todoId, text) => {
+    save: (id, text) => {
         return (dispatch) => {
-            return axios.put(`${apiUrl}/${todoId}`, { text })
-                .then((todo) => {
-                    dispatch(updateTodo(todo.data));
+            return axios.put(`${apiUrl}/${id}`, { text })
+                .then((res) => {
+                    dispatch(updateTodo(res.data));
                     console.log('Successfully updated')
                 })
                 .catch((error)=> {
@@ -90,10 +97,10 @@ export const actionCreators = {
                 })
         }
     },
-    remove: (index) => dispatch => {
-        axios.delete(`${apiUrl}/${index}`)
-            .then((msg) => {
-                dispatch(removeTodo(index));
+    remove: (id) => dispatch => {
+        axios.delete(`${apiUrl}/${id}`)
+            .then((res) => {
+                dispatch(removeTodo(id));
                 console.log('Successfully deleted')
             })
             .catch((error) => {

@@ -4,10 +4,12 @@ import { Provider } from 'react-redux';
 import './css/style.css';
 import App from './containers/app'
 import { actionCreators } from './actions'
-import configureStore from './helpers/configureStore'
+import TodoService from './services'
+import configureStore from './store'
 
 const store = configureStore();
 store.dispatch(actionCreators.fetch());
+store.dispatch(TodoService.getAll());
 
 render(
     <Provider store={store}>

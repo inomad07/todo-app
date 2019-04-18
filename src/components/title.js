@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 const styles = {
     header: {
@@ -12,18 +12,15 @@ const styles = {
 };
 
 
-class Title extends Component {
-    render() {
-        const { children } = this.props;
+const Title = (props) => {
+    const {children} = props;
 
-        return (
-            <div style={styles.header}>
-                <div style={styles.title}>{children}</div>
-            </div>
-        );
-    }
-}
-
+    return (
+        <div style={styles.header}>
+            <div style={styles.title}>{children}</div>
+        </div>
+    );
+};
 
 
 export default Title;

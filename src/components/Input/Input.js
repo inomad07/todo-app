@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import './input.css';
 
-export default class Input extends Component {
+class Input extends Component {
     state = {
         value: ""
     };
@@ -42,3 +43,4 @@ export default class Input extends Component {
     }
 }
 
+export default Input;

@@ -1,17 +1,11 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { actionCreators } from '../actions'
-import List from './list'
-import Input from './input'
-import Title from './title'
-
-const styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-    }
-};
+import { actionCreators } from '../../actions/index'
+import './app.css';
+import TodoList from '../TodoList'
+import Input from '../Input'
+import Title from '../Title'
 
 class App extends Component {
 
@@ -39,9 +33,9 @@ class App extends Component {
     };
 
     render() {
-        const todoList =  this.props.todoList.todos;
+        const todoList = this.props.todoList.todos;
         return (
-            <div style = { styles.container }>
+            <div className="container">
                 <Title>
                     To-Do List
                 </Title>
@@ -49,11 +43,11 @@ class App extends Component {
                     placeholder     = {'Type a todo, then hit enter!'}
                     onSubmitEditing = { this.onAddTodo }
                 />
-                <List
+                <TodoList
                     list         = { todoList }
                     onRemoveItem = { this.onRemoveTodo }
                     onToggleItem = { this.onToggleTodo }
-                    onUpdateItem   = { this.onUpdateTodo }
+                    onUpdateItem = { this.onUpdateTodo }
                 />
             </div>
         )

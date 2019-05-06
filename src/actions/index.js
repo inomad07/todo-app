@@ -2,35 +2,35 @@ import types from '../constants'
 import TodoService from '../services'
 // Helper functions to dispatch actions, optionally with payloads
 
-export const getTodoList = (todos) => {
+const getTodoList = (todos) => {
     return {
         type: types.GET_ALL,
         todos
     }
 };
 
-export const createTodo = (todo) => {
+const createTodo = (todo) => {
     return {
         type: types.ADD,
         todo
     }
 };
 
-export const changeState = (todo) => {
+const changeState = (todo) => {
     return {
         type: types.TOGGLE,
         todo
     }
 };
 
-export const updateTodo = (todo) => {
+const updateTodo = (todo) => {
     return {
         type: types.UPDATE,
         todo
     }
 };
 
-export const removeTodo = (todoId) => {
+const removeTodo = (todoId) => {
     return {
         type: types.REMOVE,
         todoId

@@ -45,7 +45,7 @@ class App extends Component {
                 <List
                     list={todos}
                     onRemoveItem = { this.onRemoveTodo }
-                    onToggletItem = { this.onToggleTodo }
+                    onToggleItem = { this.onToggleTodo }
                 />
             </div>
         )

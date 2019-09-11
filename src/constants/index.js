@@ -2,6 +2,6 @@
 export default {
     ADD: "ADD",
     REMOVE: "REMOVE",
-    SELECT: "SELECT",
+    TOGGLE: "TOGGLE",
     SAVE: "SAVE"
 };

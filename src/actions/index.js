@@ -14,9 +14,9 @@ export const actionCreators = {
             payload: index
         };
     },
-    select: index => {
+    toggle: index => {
         return {
-            type: types.SELECT,
+            type: types.TOGGLE,
             payload: index
         };
     },

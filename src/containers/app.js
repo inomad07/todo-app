@@ -26,8 +26,8 @@ class App extends Component {
         this.props.remove(index)
     };
 
-    onSelectTodo = (index) => {
-        this.props.select(index)
+    onToggleTodo = (index) => {
+        this.props.toggle(index)
     };
 
     render() {
@@ -45,7 +45,7 @@ class App extends Component {
                 <List
                     list={todos}
                     onRemoveItem = { this.onRemoveTodo }
-                    onSelectItem = { this.onSelectTodo }
+                    onToggletItem = { this.onToggleTodo }
                 />
             </div>
         )

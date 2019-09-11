@@ -47,19 +47,17 @@ export const allState = (state = initialState, action) => {
                 todos: todos.filter(todo => todo.id !== payload)
             };
         }
-        case types.SELECT: {
+        case types.TOGGLE: {
             return {
                 todos: todos.map(todo => todo.id === action.payload ?
-                { ...todo, done: !todo.done } : todo)
+                    {...todo, done: !todo.done} : todo)
             };
         }
         case types.SAVE:
             return {
                 todos: todos.map(todo => todo.id === action.payload.id ?
-                   { ...todo,  text: action.payload.text  }
-                        : todo
-                )
-        };
+                    {...todo, text: action.payload.text} : todo)
+            };
         default:
             return state;
     }

@@ -3,12 +3,8 @@ import './todo-list.css';
 
 class TodoList extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            text: ''
-        }
+    state = {
+        text: ""
     };
 
     onTextChange = (event) => {

@@ -9,13 +9,6 @@ import Title from '../Title'
 
 class App extends Component {
 
-    constructor(props){
-        super(props);
-        this.state = {
-
-        }
-    }
-
     onAddTodo = (text) => {
         this.props.add(text)
     };

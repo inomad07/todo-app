@@ -2,22 +2,22 @@ import types from '../constants'
 
 // Helper functions to dispatch actions, optionally with payloads
 export const actionCreators = {
-    add: item => {
+    add: todo => {
         return {
             type: types.ADD,
-            payload: item
+            payload: todo
         };
     },
-    remove: index => {
+    remove: todo => {
         return {
             type: types.REMOVE,
-            payload: index
+            payload: todo
         };
     },
-    toggle: index => {
+    toggle: todo => {
         return {
             type: types.TOGGLE,
-            payload: index
+            payload: todo
         };
     },
     save: (id, text)=> {

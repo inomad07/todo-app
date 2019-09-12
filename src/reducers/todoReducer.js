@@ -24,7 +24,7 @@ const initialState = {
 
 let id = 3;
 
-export const allState = (state = initialState, action) => {
+export const todoReducer = (state = initialState, action) => {
     const { todos } = state;
     const { type, payload } = action;
 

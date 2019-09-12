@@ -4,10 +4,10 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import './css/style.css';
 import App from './containers/app'
-import { allState } from './reducers/allState'
+import { todoReducer } from './reducers/todoReducer'
 
 
-const store = createStore(allState);
+const store = createStore(todoReducer);
 
 render(
     <Provider store={store}>

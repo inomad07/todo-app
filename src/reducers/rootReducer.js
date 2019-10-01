@@ -4,7 +4,7 @@ const initialData = {
     todos: []
 };
 
-export const mainReducer = (state = initialData, action) => {
+export const rootReducer = (state = initialData, action) => {
     switch (action.type) {
         case types.GET_ALL:
         {

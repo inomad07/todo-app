@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { actionCreators } from '../../actions/index'
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { actionCreators } from '../../actions/index';
 import './app.css';
-import TodoList from '../TodoList'
-import Input from '../Input'
-import Title from '../Title'
+import TodoList from '../TodoList';
+import Input from '../Input';
+import Title from '../Title';
 
 class App extends Component {
 

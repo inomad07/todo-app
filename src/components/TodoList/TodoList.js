@@ -23,7 +23,7 @@ class TodoList extends Component {
 
     renderItem = (todo) => {
         let isToDoEditable = this.state.editableToDoId;
-        if (isToDoEditable  === todo._id)
+        if (isToDoEditable  === todo._id) {
             return (
                 <span>
                     <input
@@ -33,6 +33,7 @@ class TodoList extends Component {
                     <button onClick={this.saveItem}>Update</button>
                 </span>
             );
+        }
 
         return (<span onDoubleClick={() => this.editItem(todo)}>{todo.text}</span>)
     };

@@ -34,7 +34,6 @@ class TodoList extends Component {
                 </span>
             );
         }
-
         return (<span onDoubleClick={() => this.editItem(todo)}>{todo.text}</span>)
     };
 
@@ -51,11 +50,9 @@ class TodoList extends Component {
                     <button onClick={() => onToggleItem(todo._id)}>Toggle</button>
                     <button onClick={() => onRemoveItem(todo._id)}>Delete</button>
                 </div>)}
-
             </div>
         );
     }
-
 }
 
 

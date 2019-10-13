@@ -24,7 +24,7 @@ class List extends Component {
 
     renderItem = (todo) => {
         let isToDoEditable = this.state.editableToDoId;
-        if (isToDoEditable  === todo.id)
+        if (isToDoEditable === todo.id)
             return (
                 <span>
                     <input

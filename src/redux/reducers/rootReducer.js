@@ -5,15 +5,14 @@ const initialData = {
 };
 
 export const rootReducer = (state = initialData, action) => {
-    switch (action.type) {
-        case types.GET_ALL:
-        {
+    const { type } = action;
+    switch (type) {
+        case types.GET_ALL: {
             return {
                 todos: action.todos
             }
         }
-        case types.ADD:
-        {
+        case types.ADD: {
             return {
                 todos: [
                     ...state.todos,
@@ -21,8 +20,7 @@ export const rootReducer = (state = initialData, action) => {
                 ]
             }
         }
-        case types.TOGGLE:
-        {
+        case types.TOGGLE: {
             const stateObj = Object.assign({}, state, {
                 todos: state.todos.map((todo) => {
                     if (todo._id === action.todo._id) {
@@ -32,11 +30,9 @@ export const rootReducer = (state = initialData, action) => {
                     return todo;
                 })
             });
-
             return stateObj;
         }
-        case types.UPDATE:
-        {
+        case types.UPDATE: {
             const todos = state.todos.map((todo) => {
                 if (todo._id === action.todo.body._id) {
                     const todoOb = Object.assign({}, todo, { text: action.todo.body.text });
@@ -47,8 +43,7 @@ export const rootReducer = (state = initialData, action) => {
            const stateOb = Object.assign({}, state, { todos: todos });
            return stateOb;
         }
-        case types.REMOVE:
-        {
+        case types.REMOVE: {
            return {
                todos: state.todos.filter((todo) => todo._id !== action.todoId)
            }

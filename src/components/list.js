@@ -6,7 +6,8 @@ import { actionCreators } from '../redux/actions';
 class List extends Component {
 
     state = {
-        text: ""
+        text: " ",
+        editableToDoId: " "
     };
 
     onTextChange = (event) => {
@@ -24,7 +25,7 @@ class List extends Component {
 
     renderItem = (todo) => {
         let isToDoEditable = this.state.editableToDoId;
-        if (isToDoEditable === todo.id)
+        if (isToDoEditable === todo.id) {
             return (
                 <span>
                     <input
@@ -36,7 +37,7 @@ class List extends Component {
                     </button>
                 </span>
             );
-
+        }
         return (<span onDoubleClick={() => this.editItem(todo)}>{todo.text}</span>)
     };
 
@@ -57,7 +58,6 @@ class List extends Component {
             </div>
         );
     }
-
 }
 
 

@@ -4,7 +4,8 @@ import './todo-list.css';
 class TodoList extends Component {
 
     state = {
-        text: ""
+        text: " ",
+        editableToDoId: " "
     };
 
     onTextChange = (event) => {
@@ -30,7 +31,7 @@ class TodoList extends Component {
                         type="text"
                         value={this.state.text}
                         onChange={this.onTextChange}/>
-                    <button onClick={this.saveItem}>Update</button>
+                    <button onClick={this.saveItem}>Edit</button>
                 </span>
             );
         }

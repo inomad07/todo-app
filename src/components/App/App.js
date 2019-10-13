@@ -26,7 +26,7 @@ class App extends Component {
     };
 
     render() {
-        const todoList = this.props.todoList.todos;
+        const { todoList } = this.props;
         return (
             <div className="container">
                 <Title>
@@ -50,7 +50,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        todoList: state.rootReducer
+        todoList: state.rootReducer.todos
     }
 }
 

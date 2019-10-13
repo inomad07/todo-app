@@ -3,9 +3,9 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux';
 import App from './components/App'
 import { actionCreators } from './redux/actions'
-import configureStore from './redux/store'
+import Store from './redux/store'
 
-const store = configureStore();
+const store = Store();
 store.dispatch(actionCreators.getAll());
 
 render(

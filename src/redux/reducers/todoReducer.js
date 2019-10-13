@@ -24,7 +24,7 @@ const initialState = {
 
 let id = 3;
 
-export const todoReducer = (state = initialState, action) => {
+const todoReducer = (state = initialState, action) => {
     const { todos } = state;
     const { type, payload } = action;
 
@@ -60,5 +60,6 @@ export const todoReducer = (state = initialState, action) => {
         default:
             return state;
     }
-
 };
+
+export default todoReducer;

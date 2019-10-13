@@ -1,5 +1,5 @@
 import types from '../constants'
-import TodoService from '../services'
+import TodoService from '../../services'
 // Helper functions to dispatch actions, optionally with payloads
 
 const getTodoList = (todos) => {

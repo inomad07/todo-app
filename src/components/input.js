@@ -28,11 +28,7 @@ export default class Input extends Component {
 
         onSubmitEditing(value);
 
-        this.setState(
-            {
-                value: ""
-            }
-        );
+        this.setState({ value: "" });
     };
 
     render() {

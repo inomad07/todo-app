@@ -32,10 +32,10 @@ export const todoReducer = (state = initialState, action) => {
         case types.ADD: {
             return {
                 todos: [
-                    ...state.todos,
+                    ...todos,
                     {
                         id: ++id,
-                        text: action.payload,
+                        text: payload,
                         done: false,
                     }
                 ]
@@ -49,15 +49,14 @@ export const todoReducer = (state = initialState, action) => {
         }
         case types.TOGGLE: {
             return {
-                todos: todos.map(todo => todo.id === action.payload ?
-                    {...todo, done: !todo.done} : todo)
+                todos: todos.map(todo => todo.id === payload ? {...todo, done: !todo.done} : todo)
             };
         }
-        case types.SAVE:
+        case types.SAVE: {
             return {
-                todos: todos.map(todo => todo.id === action.payload.id ?
-                    {...todo, text: action.payload.text} : todo)
+                todos: todos.map(todo => todo.id === payload.id ? {...todo, text: payload.text} : todo)
             };
+        }
         default:
             return state;
     }

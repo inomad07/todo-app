@@ -13,7 +13,7 @@ const styles = {
 
 
 const Title = (props) => {
-    const {children} = props;
+    const { children } = props;
 
     return (
         <div style={styles.header}>

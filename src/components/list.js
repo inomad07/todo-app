@@ -42,7 +42,7 @@ class List extends Component {
     };
 
     render() {
-        let todos = this.props.todos;
+        let { todos } = this.props;
         const { onRemoveItem } = this.props;
         const { onToggleItem } = this.props;
 

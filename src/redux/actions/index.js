@@ -5,28 +5,28 @@ import TodoService from '../../services'
 const getTodoList = (todos) => {
     return {
         type: types.GET_ALL,
-        todos
+        payload: todos
     }
 };
 
 const createTodo = (todo) => {
     return {
         type: types.ADD,
-        todo
+        payload: todo
     }
 };
 
 const changeState = (todo) => {
     return {
         type: types.TOGGLE,
-        todo
+        payload: todo
     }
 };
 
 const updateTodo = (todo) => {
     return {
         type: types.UPDATE,
-        todo
+        payload: todo
     }
 };
 

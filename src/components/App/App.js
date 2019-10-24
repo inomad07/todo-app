@@ -50,7 +50,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        todoList: state.rootReducer.todos
+        todoList: state.rootReducer
     }
 }
 

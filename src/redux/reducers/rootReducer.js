@@ -6,12 +6,12 @@ export const rootReducer = (state = initialData, action) => {
     const { type, payload } = action;
     switch (type) {
         case types.GET_ALL: {
-            return action.todos
+            return payload
         }
         case types.ADD: {
             return [
                 ...state,
-                Object.assign({}, action.todo.body)
+                Object.assign({}, payload.body)
             ]
         }
         case types.TOGGLE: {
@@ -33,7 +33,7 @@ export const rootReducer = (state = initialData, action) => {
             return todos
         }
         case types.REMOVE: {
-           return state.filter((todo) => todo._id !== action.todoId)
+            return state.filter((todo) => todo._id !== payload.id)
         }
         default:
             return state;

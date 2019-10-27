@@ -50,7 +50,7 @@ class TodoService {
     static remove(id) {
         return axios.delete(`${api}/${id}`)
             .then((res) => {
-                return id;
+                return res;
             })
             .catch((error) => {
                 console.log('Cannot remove', error)

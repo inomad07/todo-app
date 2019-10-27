@@ -9,8 +9,8 @@ import Title from '../Title';
 
 class App extends Component {
 
-    onAddTodo = (text) => {
-        this.props.add(text)
+    onAddTodo = (todo) => {
+        this.props.add(todo)
     };
 
     onRemoveTodo = (id) => {
@@ -21,8 +21,8 @@ class App extends Component {
         this.props.toggle(id)
     };
 
-    onUpdateTodo = (id, text) => {
-        this.props.update(id, text)
+    onUpdateTodo = (id, todo) => {
+        this.props.update(id, todo)
     };
 
     render() {

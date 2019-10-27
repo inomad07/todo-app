@@ -30,10 +30,10 @@ const updateTodo = (todo) => {
     }
 };
 
-const removeTodo = (todoId) => {
+const removeTodo = ({data}) => {
     return {
         type: types.REMOVE,
-        todoId
+        payload: data
     }
 };
 
@@ -93,5 +93,4 @@ export const actionCreators = {
                 })
         }
     }
-
 };

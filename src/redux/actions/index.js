@@ -49,9 +49,9 @@ export const actionCreators = {
                 })
         }
     },
-    add: (text) => {
+    add: (todo) => {
         return (dispatch) => {
-            return TodoService.add(text)
+            return TodoService.add(todo)
                 .then((res) =>
                     dispatch(createTodo(res.data))
                 )

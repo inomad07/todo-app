@@ -16,7 +16,7 @@ class TodoService {
 
     static add(text) {
         return axios.post(`${api}`, {
-            text: text,
+            text,
             toggle: false
         })
             .then((res) => {

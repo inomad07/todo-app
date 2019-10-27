@@ -31,7 +31,7 @@ class App extends Component {
     };
 
     render() {
-        const { todos } = this.props.todos;
+        const { todos } = this.props;
 
         return (
             <div style = { styles.container }>

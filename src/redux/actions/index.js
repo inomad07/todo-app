@@ -30,7 +30,7 @@ const updateTodo = (todo) => {
     }
 };
 
-const removeTodo = ({data}) => {
+const removeTodo = (data) => {
     return {
         type: types.REMOVE,
         payload: data
@@ -86,7 +86,7 @@ export const actionCreators = {
         return dispatch => {
             return TodoService.remove(id)
                 .then((res) => {
-                    dispatch(removeTodo(res));
+                    dispatch(removeTodo(res.data));
                 })
                 .catch((error) => {
                     console.log('Cannot remove', error)

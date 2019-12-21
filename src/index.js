@@ -1,14 +1,13 @@
 import React from 'react';
-import { render } from 'react-dom'
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
-import App from './containers/app'
-import todoReducer from './redux/reducers'
-import Store from "./redux/store";
-import './css/style.css';
+import App from './app';
+import rootReducer from './features/redux/reducers';
+import Store from "./features/redux/store";
 import * as serviceWorker from './registerServiceWorker';
 
-const store = Store(todoReducer);
+const store = Store(rootReducer);
 
 render(
     <Provider store={store}>

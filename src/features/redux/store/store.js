@@ -6,19 +6,21 @@ import { helloSaga } from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
+
+
+const store = createStore(
+    rootReducer,
+    applyMiddleware(sagaMiddleware)
+);
+
+// const store = () => {
+//     return createStore(
+//         rootReducer,
+//         applyMiddleware(sagaMiddleware)
+//     );
+// };
+
 sagaMiddleware.run(helloSaga);
 
-export default function Store(initialState) {
-    return createStore(
-        rootReducer,
-        initialState,
-        applyMiddleware(sagaMiddleware)
-    );
-}
 
-
-
-
-
-
-
+export default store;

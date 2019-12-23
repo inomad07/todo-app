@@ -1,4 +1,4 @@
 import { helloSaga } from './sagas';
-export default {
+export {
     helloSaga
 };

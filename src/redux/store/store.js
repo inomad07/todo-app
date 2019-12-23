@@ -1,9 +1,9 @@
 import { createStore } from 'redux';
 
 
-const Store = (initialState) => {
+const Store = (rootReducer) => {
     return createStore(
-        initialState
+        rootReducer
     );
 };
 

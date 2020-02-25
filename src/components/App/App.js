@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../redux/actions/index';
@@ -7,45 +7,43 @@ import TodoList from '../TodoList';
 import Input from '../Input';
 import Title from '../Title';
 
-class App extends Component {
-
-    onAddTodo = (todo) => {
-        this.props.add(todo)
+const App = (props) => {
+    const onAddTodo = (todo) => {
+        props.add(todo)
     };
 
-    onRemoveTodo = (id) => {
-        this.props.remove(id)
+    const onRemoveTodo = (id) => {
+        props.remove(id)
     };
 
-    onToggleTodo = (id) => {
-        this.props.toggle(id)
+    const onToggleTodo = (id) => {
+        props.toggle(id)
     };
 
-    onUpdateTodo = (id, todo) => {
-        this.props.update(id, todo)
+    const onUpdateTodo = (id, todo) => {
+        props.update(id, todo)
     };
 
-    render() {
-        const { todoList } = this.props;
-        return (
-            <div className="container">
-                <Title>
-                    To-Do List
-                </Title>
-                <Input
-                    placeholder     = {'Type a todo, then hit enter!'}
-                    onSubmitEditing = { this.onAddTodo }
-                />
-                <TodoList
-                    list         = { todoList }
-                    onRemoveItem = { this.onRemoveTodo }
-                    onToggleItem = { this.onToggleTodo }
-                    onUpdateItem = { this.onUpdateTodo }
-                />
-            </div>
-        )
-    }
-}
+    const { todoList } = props;
+
+    return (
+        <div className="container">
+            <Title
+                title           = {'To-Do List'}
+            />
+            <Input
+                placeholder     = {'Type a todo, then hit enter!'}
+                onSubmitEditing = { onAddTodo }
+            />
+            <TodoList
+                list         = { todoList }
+                onRemoveItem = { onRemoveTodo }
+                onToggleItem = { onToggleTodo }
+                onUpdateItem = { onUpdateTodo }
+            />
+        </div>
+    )
+};
 
 
 function mapStateToProps(state) {

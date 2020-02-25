@@ -1,42 +1,31 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import './input.css';
 
-class Input extends Component {
-    state = {
-        value: ""
+const Input = ({ placeholder, onSubmitEditing }) => {
+    const [ value, setValue ] = useState('');
+
+    const handleChange = (e) => {
+        setValue(e.target.value);
     };
 
-    handleChange = (e) => {
-        this.setState({ value: e.target.value });
-    };
-
-    handleKeyPress = (e) => {
+    const handleKeyPress = (e) => {
         if (e.key !== "Enter") return;
-
-        const { onSubmitEditing } = this.props;
-        const { value } = this.state;
 
         if (!value) return; // Don't submit if empty
 
         onSubmitEditing(value);
-
-        this.setState({ value: "" });
+        setValue('');
     };
 
-    render() {
-        const { placeholder } = this.props;
-        const { value } = this.state;
-
-        return (
-            <input
-                type        = { "text" }
-                value       = { value }
-                placeholder = { placeholder }
-                onChange    = { this.handleChange }
-                onKeyPress  = { this.handleKeyPress }
-            />
-        );
-    }
-}
+    return (
+        <input
+            type        = { "text" }
+            value       = { value }
+            placeholder = { placeholder }
+            onChange    = { handleChange }
+            onKeyPress  = { handleKeyPress }
+        />
+    );
+};
 
 export default Input;

@@ -40,9 +40,7 @@ class TodoList extends Component {
     };
 
     render() {
-        const { list } = this.props;
-        const { onRemoveItem } = this.props;
-        const { onToggleItem } = this.props;
+        const { list, onToggleItem, onRemoveItem } = this.props;
 
         return (
             <div className="todo-list">

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import './input.css';
 
-const Input = ({ placeholder, onSubmitEditing }) => {
+const Input = (props) => {
     const [ value, setValue ] = useState('');
+    const { placeholder, onSubmitEditing } = props;
 
     const handleChange = (e) => {
         setValue(e.target.value);

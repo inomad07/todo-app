@@ -1,30 +1,30 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../../redux/actions/index';
+import { actionCreators } from '../features/redux/actions';
 import './app.css';
-import TodoList from '../TodoList';
-import Input from '../Input';
-import Title from '../Title';
+import TodoList from '../features/components/TodoList';
+import Input from '../features/components/Input';
+import Title from '../common/components/Title';
 
 const App = (props) => {
+    const { add, toggle, update, remove, todoList } = props;
+
     const onAddTodo = (todo) => {
-        props.add(todo)
+        add(todo)
     };
 
     const onRemoveTodo = (id) => {
-        props.remove(id)
+        remove(id)
     };
 
     const onToggleTodo = (id) => {
-        props.toggle(id)
+        toggle(id)
     };
 
     const onUpdateTodo = (id, todo) => {
-        props.update(id, todo)
+        update(id, todo)
     };
-
-    const { todoList } = props;
 
     return (
         <div className="container">

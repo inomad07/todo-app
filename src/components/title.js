@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const styles = {
     header: {
@@ -11,10 +12,7 @@ const styles = {
     }
 };
 
-
-const Title = (props) => {
-    const { children } = props;
-
+const Title = ({ children }) => {
     return (
         <div style={styles.header}>
             <div style={styles.title}>{children}</div>
@@ -22,6 +20,8 @@ const Title = (props) => {
     );
 };
 
-
+Title.propTypes = {
+    children: PropTypes.string
+};
 
 export default Title;

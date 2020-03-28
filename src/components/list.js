@@ -1,13 +1,13 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from '../redux/actions';
 
 class List extends Component {
-
     state = {
         text: " ",
-        editableToDoId: " "
+        todoId: " "
     };
 
     onTextChange = (event) => {
@@ -15,17 +15,16 @@ class List extends Component {
     };
 
     editItem = (todo) => {
-        this.setState({editableToDoId: todo.id, text: todo.text});
+        this.setState({todoId: todo.id, text: todo.text});
     };
 
     saveItem = () => {
-        this.props.save(this.state.editableToDoId, this.state.text);
-        this.setState({editableToDoId: '', text: ''});
+        this.props.save(this.state.todoId, this.state.text);
+        this.setState({todoId: '', text: ''});
     };
 
     renderItem = (todo) => {
-        let isToDoEditable = this.state.editableToDoId;
-        if (isToDoEditable === todo.id) {
+        if (this.state.todoId === todo.id) {
             return (
                 <span>
                     <input
@@ -33,7 +32,7 @@ class List extends Component {
                         value={this.state.text}
                         onChange={this.onTextChange}/>
                     <button
-                        onClick={this.saveItem}>Save
+                        onClick={this.saveItem}>Edit
                     </button>
                 </span>
             );
@@ -42,13 +41,11 @@ class List extends Component {
     };
 
     render() {
-        let { todos } = this.props;
-        const { onRemoveItem } = this.props;
-        const { onToggleItem } = this.props;
+        let { list, onRemoveItem, onToggleItem } = this.props;
 
         return (
             <div className="todo-list">
-                { todos.map(todo => <div className="todo" key={todo.id}
+                { list.map(todo => <div className="todo" key={todo.id}
                                          style={ { textDecoration: todo.done ? 'line-through' : 'none'} }>
                         {this.renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
                         <button onClick={() => onToggleItem(todo.id)}>Toggle</button>
@@ -60,10 +57,9 @@ class List extends Component {
     }
 }
 
-
 function mapStateToProps(state) {
     return {
-        todos: state
+        list: state
     }
 }
 
@@ -71,5 +67,11 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(actionCreators, dispatch)
 }
 
+List.propTypes = {
+    list:         PropTypes.array,
+    onRemoveItem: PropTypes.func,
+    onToggleItem: PropTypes.func,
+    onUpdateItem: PropTypes.func,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);

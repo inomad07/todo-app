@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
+
 import './todo-list.css';
 
 const TodoList = (props) => {
     const [ text, setText ] = useState("");
-    const [ editableToDoId, setTodoId ] = useState("");
+    const [ todoId, setId ] = useState("");
     const { list, onRemoveItem, onToggleItem, onUpdateItem } = props;
 
     const onTextChange = (event) => {
@@ -11,19 +13,18 @@ const TodoList = (props) => {
     };
 
     const editItem = (todo) => {
-        setTodoId(todo._id);
+        setId(todo._id);
         setText(todo.text);
     };
 
     const saveItem = () => {
-        onUpdateItem(editableToDoId, text);
-        setTodoId('');
+        onUpdateItem(todoId, text);
+        setId('');
         setText('');
     };
 
     const renderItem = (todo) => {
-        let isToDoEditable = editableToDoId;
-        if (isToDoEditable  === todo._id) {
+        if (todoId === todo._id) {
             return (
                 <span>
                     <input
@@ -49,5 +50,11 @@ const TodoList = (props) => {
     );
 };
 
+TodoList.propTypes = {
+    list:         PropTypes.array,
+    onRemoveItem: PropTypes.func,
+    onToggleItem: PropTypes.func,
+    onUpdateItem: PropTypes.func,
+};
 
 export default TodoList;

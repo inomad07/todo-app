@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
+
 import './input.css';
 
 const Input = (props) => {
     const [ value, setValue ] = useState('');
-    const { placeholder, onSubmitEditing } = props;
+    const { placeholder, onAddTodo } = props;
 
     const handleChange = (e) => {
         setValue(e.target.value);
@@ -12,9 +14,9 @@ const Input = (props) => {
     const handleKeyPress = (e) => {
         if (e.key !== "Enter") return;
 
-        if (!value) return; // Don't submit if empty
+        if (!value) return;
 
-        onSubmitEditing(value);
+        onAddTodo(value);
         setValue('');
     };
 
@@ -27,6 +29,11 @@ const Input = (props) => {
             onKeyPress  = { handleKeyPress }
         />
     );
+};
+
+Input.propTypes = {
+    placeholder: PropTypes.string,
+    onAddTodo: PropTypes.func
 };
 
 export default Input;

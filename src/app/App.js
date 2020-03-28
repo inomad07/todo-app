@@ -29,11 +29,11 @@ const App = (props) => {
     return (
         <div className="container">
             <Title
-                title           = {'To-Do List'}
+                title        = {'To-Do List'}
             />
             <Input
-                placeholder     = {'Type a todo, then hit enter!'}
-                onSubmitEditing = { onAddTodo }
+                placeholder  = {'Type a todo, then hit enter!'}
+                onAddTodo    = { onAddTodo }
             />
             <TodoList
                 list         = { todoList }

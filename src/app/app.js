@@ -1,11 +1,11 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { actionCreators } from '../redux/actions'
+import { actionCreators } from '../features/redux/actions'
 
-import List from '../components/list'
-import Input from '../components/input'
-import Title from '../components/title'
+import List from '../features/components/List'
+import Input from '../features/components/Input'
+import Title from '../common/components/Title'
 
 const styles = {
     container: {

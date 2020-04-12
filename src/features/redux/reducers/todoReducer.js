@@ -36,17 +36,20 @@ const todoReducer = (state = initialState, action) => {
                 }
             ];
         }
+
         case types.TOGGLE: {
             return state.map(todo => todo.id === payload ? {...todo, done: !todo.done} : todo);
         }
+
         case types.SAVE: {
             return state.map(todo => todo.id === payload.id ? {...todo, text: payload.text} : todo);
         }
+
         case types.REMOVE: {
             return state.filter(todo => todo.id !== payload)
         }
-        default:
-            return state;
+
+        default: return state;
     }
 };
 

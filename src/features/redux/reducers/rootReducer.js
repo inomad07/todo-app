@@ -2,7 +2,7 @@ import types from '../constants'
 
 const initialData = [];
 
-export const rootReducer = (state = initialData, action) => {
+const rootReducer = (state = initialData, action) => {
     const { type, payload } = action;
 
     switch (type) {
@@ -36,3 +36,5 @@ export const rootReducer = (state = initialData, action) => {
         default: return state;
     }
 };
+
+export default rootReducer;

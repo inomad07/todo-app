@@ -1,13 +1,14 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { actionCreators } from '../features/redux/actions';
-import './app.css';
+
 import TodoList from '../features/components/TodoList';
 import Input from '../features/components/Input';
 import Title from '../common/components/Title';
+import Actions from '../features/redux/actions';
+import './app.css';
 
-const App = (props) => {
+function App (props) {
     const { add, toggle, update, remove, todoList } = props;
 
     const onAddTodo = (todo) => {
@@ -43,7 +44,7 @@ const App = (props) => {
             />
         </div>
     )
-};
+}
 
 
 function mapStateToProps(state) {
@@ -53,7 +54,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actionCreators, dispatch)
+    return bindActionCreators(Actions, dispatch)
 }
 
 

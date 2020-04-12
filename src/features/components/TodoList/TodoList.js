@@ -35,6 +35,7 @@ const TodoList = (props) => {
                 </span>
             );
         }
+
         return (<span onDoubleClick={() => editItem(todo)}>{todo.text}</span>)
     };
 

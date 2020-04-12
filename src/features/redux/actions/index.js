@@ -37,56 +37,61 @@ const removeTodo = (data) => {
     }
 };
 
-export const actionCreators = {
+
+export default {
     getAll: () => {
         return (dispatch) => {
             return TodoService.getAll()
                 .then((res) => {
-                    dispatch(getTodoList(res.data));
+                    dispatch(getTodoList(res));
                 })
                 .catch((error) => {
                     console.log('Cannot fetch', error)
                 })
         }
     },
+
     add: (todo) => {
         return (dispatch) => {
             return TodoService.add(todo)
-                .then((res) =>
-                    dispatch(createTodo(res.data))
-                )
+                .then((res) => {
+                    dispatch(createTodo(res.body))
+                })
                 .catch((error) => {
                     console.log(error)
                 })
         }
     },
+
     toggle: (id) => {
         return (dispatch) => {
             return TodoService.toggle(id)
                 .then((res) => {
-                    dispatch(changeState(res.data));
+                    dispatch(changeState(res));
                 })
                 .catch((error) => {
                     console.log('Cannot toggle', error)
                 })
         }
     },
+
     update: (id, text) => {
         return (dispatch) => {
             return TodoService.update(id, text)
                 .then((res) => {
-                    dispatch(updateTodo(res.data));
+                    dispatch(updateTodo(res.body));
                 })
-                .catch((error)=> {
+                .catch((error) => {
                     console.log('Cannot update', error)
                 })
         }
     },
+
     remove: (id) => {
         return dispatch => {
             return TodoService.remove(id)
                 .then((res) => {
-                    dispatch(removeTodo(res.data));
+                    dispatch(removeTodo(res));
                 })
                 .catch((error) => {
                     console.log('Cannot remove', error)

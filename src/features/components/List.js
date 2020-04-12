@@ -1,71 +1,56 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { actionCreators } from '../redux/actions';
 
-class List extends Component {
-    state = {
-        text: " ",
-        todoId: " "
+const List = (props) => {
+    const [ text, setText ] = useState("");
+    const [ todoId, setId ] = useState("");
+    const { list, onRemoveItem, onToggleItem, onUpdateItem } = props;
+
+    const onTextChange = (event) => {
+        setText(event.target.value);
     };
 
-    onTextChange = (event) => {
-        this.setState({text: event.target.value});
+    const editItem = (todo) => {
+        setId(todo.id);
+        setText(todo.text);
     };
 
-    editItem = (todo) => {
-        this.setState({todoId: todo.id, text: todo.text});
+    const saveItem = () => {
+        onUpdateItem(todoId, text);
+        setId('');
+        setText('');
     };
 
-    saveItem = () => {
-        this.props.save(this.state.todoId, this.state.text);
-        this.setState({todoId: '', text: ''});
-    };
-
-    renderItem = (todo) => {
-        if (this.state.todoId === todo.id) {
+    const renderItem = (todo) => {
+        if (todoId === todo.id) {
             return (
                 <span>
                     <input
-                        type="text"
-                        value={this.state.text}
-                        onChange={this.onTextChange}/>
-                    <button
-                        onClick={this.saveItem}>Edit
-                    </button>
+                        type     = "text"
+                        value    = { text }
+                        onChange = { onTextChange }
+                    />
+                    <button onClick={saveItem}>Edit</button>
                 </span>
             );
         }
-        return (<span onDoubleClick={() => this.editItem(todo)}>{todo.text}</span>)
+
+        return (<span onDoubleClick={() => editItem(todo)}>{todo.text}</span>)
     };
 
-    render() {
-        let { list, onRemoveItem, onToggleItem } = this.props;
+    return (
+        <div className="todo-list">
+            { list.map(todo => <div className="todo" key={todo.id}
+                                    style={ { textDecoration: todo.done ? 'line-through' : 'none'} }>
+                {renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onClick={() => onToggleItem(todo.id)}>Toggle</button>
+                <button onClick={() => onRemoveItem(todo.id)}>Delete</button>
+            </div>)
+            }
+        </div>
+    );
+};
 
-        return (
-            <div className="todo-list">
-                { list.map(todo => <div className="todo" key={todo.id}
-                                         style={ { textDecoration: todo.done ? 'line-through' : 'none'} }>
-                        {this.renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button onClick={() => onToggleItem(todo.id)}>Toggle</button>
-                        <button onClick={() => onRemoveItem(todo.id)}>Delete</button>
-                    </div>)
-                }
-            </div>
-        );
-    }
-}
-
-function mapStateToProps(state) {
-    return {
-        list: state
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actionCreators, dispatch)
-}
 
 List.propTypes = {
     list:         PropTypes.array,
@@ -74,4 +59,4 @@ List.propTypes = {
     onUpdateItem: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default List;

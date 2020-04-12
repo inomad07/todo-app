@@ -41,7 +41,7 @@ const todoReducer = (state = initialState, action) => {
             return state.map(todo => todo.id === payload ? {...todo, done: !todo.done} : todo);
         }
 
-        case types.SAVE: {
+        case types.UPDATE: {
             return state.map(todo => todo.id === payload.id ? {...todo, text: payload.text} : todo);
         }
 

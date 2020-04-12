@@ -1,7 +1,7 @@
 // The types of actions that you can dispatch to modify the state of the store
 export default {
-    ADD: "ADD",
+    ADD:    "ADD",
     REMOVE: "REMOVE",
     TOGGLE: "TOGGLE",
-    SAVE: "SAVE"
+    UPDATE: "UPDATE"
 };

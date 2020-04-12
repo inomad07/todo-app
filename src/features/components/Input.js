@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 
 const styles = {
@@ -9,47 +9,38 @@ const styles = {
     }
 };
 
+const Input = (props) => {
+    const [ value, setValue ] = useState('');
+    const { placeholder, onAddTodo } = props;
 
-export default class Input extends Component {
-    state = {
-        value: ""
+    const handleChange = (e) => {
+        setValue(e.target.value);
     };
 
-    handleChange = (e) => {
-        this.setState({ value: e.target.value });
-    };
-
-    handleKeyPress = (e) => {
+    const handleKeyPress = (e) => {
         if (e.key !== "Enter") return;
-
-        const { onAddTodo } = this.props;
-        const { value } = this.state;
 
         if (!value) return;
 
         onAddTodo(value);
-
-        this.setState({ value: "" });
+        setValue('');
     };
 
-    render() {
-        const { placeholder } = this.props;
-        const { value } = this.state;
-
-        return (
-            <input
-                style       = { styles.input }
-                type        = { "text" }
-                value       = { value }
-                placeholder = { placeholder }
-                onChange    = { this.handleChange }
-                onKeyPress  = { this.handleKeyPress }
-            />
-        );
-    }
-}
+    return (
+        <input
+            style       = { styles.input }
+            type        = { "text" }
+            value       = { value }
+            placeholder = { placeholder }
+            onChange    = { handleChange }
+            onKeyPress  = { handleKeyPress }
+        />
+    );
+};
 
 Input.propTypes = {
     placeholder: PropTypes.string,
     onAddTodo: PropTypes.func
 };
+
+export default Input;

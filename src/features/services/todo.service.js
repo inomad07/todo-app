@@ -3,59 +3,64 @@ import config from '../../common/config/api.config';
 
 const api = `${config.protocol}://${config.host}/api`;
 
-class TodoService {
-    static getAll() {
-        return axios.get(`${api}/all`)
-            .then((res) => {
-                return res;
-            })
-            .catch((err) => {
-                console.log('Cannot fetch', err)
-            })
-    }
-
-    static add(text) {
-        return axios.post(`${api}`, {
-            text,
-            toggle: false
+function getAll() {
+    return axios.get(`${api}/all`)
+        .then((res) => {
+            return res;
         })
-            .then((res) => {
-                return res;
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
-
-    static toggle(id) {
-        return axios.put(`${api}/${id}/toggle`)
-            .then((res) => {
-                return res;
-            })
-            .catch((error) => {
-                console.log('Cannot toggle', error)
-            })
-    }
-
-    static update(id, text){
-        return axios.put(`${api}/${id}`, { text })
-            .then((res) => {
-                return res;
-            })
-            .catch((error)=> {
-                console.log('Cannot update', error)
-            })
-    }
-
-    static remove(id) {
-        return axios.delete(`${api}/${id}`)
-            .then((res) => {
-                return res;
-            })
-            .catch((error) => {
-                console.log('Cannot remove', error)
-            })
-    }
+        .catch((err) => {
+            console.log('Cannot fetch', err)
+        })
 }
 
-export default TodoService;
+function add(text) {
+    return axios.post(`${api}`, {
+        text,
+        toggle: false
+    })
+        .then((res) => {
+            return res;
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+
+function toggle(id) {
+    return axios.put(`${api}/${id}/toggle`)
+        .then((res) => {
+            return res;
+        })
+        .catch((error) => {
+            console.log('Cannot toggle', error)
+        })
+}
+
+function update(id, text) {
+    return axios.put(`${api}/${id}`, { text })
+        .then((res) => {
+            return res;
+        })
+        .catch((error)=> {
+            console.log('Cannot update', error)
+        })
+}
+
+function remove(id) {
+    return axios.delete(`${api}/${id}`)
+        .then((res) => {
+            return res;
+        })
+        .catch((error) => {
+            console.log('Cannot remove', error)
+        })
+}
+
+
+export default {
+    getAll,
+    add,
+    toggle,
+    update,
+    remove
+}

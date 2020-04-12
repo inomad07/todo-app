@@ -5,9 +5,7 @@ import { Provider } from 'react-redux';
 import App from './app';
 import Store from "./features/redux/store";
 
-// const store = Store();
-
-render(
+render (
     <Provider store={Store}>
         <App />
     </Provider>,

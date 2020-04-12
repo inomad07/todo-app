@@ -1,43 +1,39 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import PropTypes from 'prop-types';
 
 import './input.css';
 
-class Input extends Component {
-    state = {
-        value: ""
+const Input = (props) => {
+    const [ value, setValue ] = useState('');
+    const { placeholder, onAddTodo } = props;
+
+    const handleChange = (e) => {
+        setValue(e.target.value);
     };
 
-    handleChange = (e) => {
-        this.setState({ value: e.target.value });
-    };
-
-    handleKeyPress = (e) => {
+    const handleKeyPress = (e) => {
         if (e.key !== "Enter") return;
 
-        const { onSubmitEditing } = this.props;
-        const { value } = this.state;
+        if (!value) return;
 
-        if (!value) return; // Don't submit if empty
-
-        onSubmitEditing(value);
-
-        this.setState({ value: "" });
+        onAddTodo(value);
+        setValue('');
     };
 
-    render() {
-        const { placeholder } = this.props;
-        const { value } = this.state;
+    return (
+        <input
+            type        = { "text" }
+            value       = { value }
+            placeholder = { placeholder }
+            onChange    = { handleChange }
+            onKeyPress  = { handleKeyPress }
+        />
+    );
+};
 
-        return (
-            <input
-                type        = { "text" }
-                value       = { value }
-                placeholder = { placeholder }
-                onChange    = { this.handleChange }
-                onKeyPress  = { this.handleKeyPress }
-            />
-        );
-    }
-}
+Input.propTypes = {
+    placeholder: PropTypes.string,
+    onAddTodo: PropTypes.func
+};
 
 export default Input;

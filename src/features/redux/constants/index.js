@@ -3,5 +3,5 @@ export default {
     ADD: "ADD",
     REMOVE: "REMOVE",
     TOGGLE: "TOGGLE",
-    SAVE: "SAVE"
+    UPDATE: "UPDATE"
 };

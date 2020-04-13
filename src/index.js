@@ -10,7 +10,7 @@ import * as serviceWorker from './registerServiceWorker';
 
 const store = Store(todoReducer);
 
-render(
+render (
     <Provider store={store}>
         <App />
     </Provider>,

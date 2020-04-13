@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { actionCreators } from '../redux/actions';
 
 class List extends Component {
     state = {
-        text: " ",
-        todoId: " "
+        text: '',
+        todoId: ''
     };
 
     onTextChange = (event) => {
@@ -19,7 +16,7 @@ class List extends Component {
     };
 
     saveItem = () => {
-        this.props.save(this.state.todoId, this.state.text);
+        this.props.onUpdateItem(this.state.todoId, this.state.text);
         this.setState({todoId: '', text: ''});
     };
 
@@ -57,16 +54,6 @@ class List extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        list: state
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actionCreators, dispatch)
-}
-
 List.propTypes = {
     list:         PropTypes.array,
     onRemoveItem: PropTypes.func,
@@ -74,4 +61,4 @@ List.propTypes = {
     onUpdateItem: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default List;

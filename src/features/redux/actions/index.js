@@ -43,7 +43,7 @@ export default {
         return (dispatch) => {
             return TodoService.getAll()
                 .then((res) => {
-                    dispatch(getTodoList(res));
+                    dispatch(getTodoList(res.todo));
                 })
                 .catch((error) => {
                     console.log('Cannot fetch', error)
@@ -55,7 +55,7 @@ export default {
         return (dispatch) => {
             return TodoService.add(todo)
                 .then((res) => {
-                    dispatch(createTodo(res.body))
+                    dispatch(createTodo(res.todo))
                 })
                 .catch((error) => {
                     console.log(error)
@@ -67,7 +67,7 @@ export default {
         return (dispatch) => {
             return TodoService.toggle(id)
                 .then((res) => {
-                    dispatch(changeState(res));
+                    dispatch(changeState(res.todo));
                 })
                 .catch((error) => {
                     console.log('Cannot toggle', error)
@@ -79,7 +79,7 @@ export default {
         return (dispatch) => {
             return TodoService.update(id, text)
                 .then((res) => {
-                    dispatch(updateTodo(res.body));
+                    dispatch(updateTodo(res.todo));
                 })
                 .catch((error) => {
                     console.log('Cannot update', error)

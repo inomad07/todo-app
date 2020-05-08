@@ -4,26 +4,26 @@ import PropTypes from 'prop-types';
 import './input.css';
 
 const Input = (props) => {
-    const [ value, setValue ] = useState('');
+    const [ name, setName ] = useState('');
     const { placeholder, onAddTodo } = props;
 
     const handleChange = (e) => {
-        setValue(e.target.value);
+        setName(e.target.value);
     };
 
     const handleKeyPress = (e) => {
         if (e.key !== "Enter") return;
 
-        if (!value) return;
+        if (!name) return;
 
-        onAddTodo(value);
-        setValue('');
+        onAddTodo(name);
+        setName('');
     };
 
     return (
         <input
             type        = { "text" }
-            value       = { value }
+            value       = { name }
             placeholder = { placeholder }
             onChange    = { handleChange }
             onKeyPress  = { handleKeyPress }

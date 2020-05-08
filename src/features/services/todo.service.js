@@ -28,7 +28,7 @@ function toggle(id) {
 }
 
 function update(id, text) {
-    return axios.put(`${api}/${id}`, {text})
+    return axios.put(`${api}/${id}`, { text })
         .then((res) => res.data)
         .catch((error) => {
             console.log('Cannot update', error)

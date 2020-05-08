@@ -1,7 +1,8 @@
-import axios from 'axios';
-import config from '../../common/config/api.config';
+import axios from 'axios'
+import config from '../../common/config/api.config'
+import { todoType } from '../types'
 
-const api = `${config.protocol}://${config.host}/api`;
+const api = `${config.protocol}://${config.host}/api`
 
 function getAll() {
     return axios.get(`${api}/all`)
@@ -11,7 +12,7 @@ function getAll() {
         })
 }
 
-function add(text) {
+function add(text: string) {
     return axios.post(`${api}`, { text, toggle: false })
         .then((res) => res.data)
         .catch((error) => {
@@ -19,24 +20,24 @@ function add(text) {
         })
 }
 
-function toggle(id) {
-    return axios.put(`${api}/${id}/toggle`)
+function toggle(todo: todoType) {
+    return axios.put(`${api}/${todo._id}/toggle`)
         .then((res) => res.data)
         .catch((error) => {
             console.log('Cannot toggle', error)
         })
 }
 
-function update(id, text) {
-    return axios.put(`${api}/${id}`, {text})
+function update(todo: todoType) {
+    return axios.put(`${api}/${todo.id}`, { text: todo.text })
         .then((res) => res.data)
         .catch((error) => {
             console.log('Cannot update', error)
         })
 }
 
-function remove(id) {
-    return axios.delete(`${api}/${id}`)
+function remove(todo: todoType) {
+    return axios.delete(`${api}/${todo._id}`)
         .then((res) => res.data)
         .catch((error) => {
             console.log('Cannot remove', error)

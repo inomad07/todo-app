@@ -7,13 +7,13 @@ const rootReducer = (state = initialData, action) => {
 
     switch (type) {
         case types.GET_ALL: {
-            return payload;
+            return payload || state;
         }
 
         case types.ADD: {
             return [
                 ...state,
-                state = payload
+                payload
             ]
         }
 

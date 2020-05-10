@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Actions from '../features/redux/actions';
 
 import TodoList from '../features/components/TodoList';
 import Input from '../features/components/Input';
 import Title from '../common/components/Title';
+import Actions from '../features/redux/actions';
+import TodoService from "../features/services";
 import './app.css';
 
 function App(props) {
-    const { todoList, add, remove, toggle, update } = props;
+    const [list, fetchList] = useState([]);
+
+    useEffect(() => {
+        TodoService.getAll()
+            .then(res => fetchList(res))
+            .catch(err => console.log(err));
+    }, []);
+
+
+    const { add, remove, toggle, update } = props;
 
     const onAddTodo = (todo) => {
         add(todo)
@@ -37,7 +47,7 @@ function App(props) {
                 onSubmitEditing = { onAddTodo }
             />
             <TodoList
-                list         = { todoList }
+                list         = { list }
                 onRemoveItem = { onRemoveTodo }
                 onToggleItem = { onToggleTodo }
                 onUpdateItem = { onUpdateTodo }
@@ -45,7 +55,6 @@ function App(props) {
         </div>
     )
 }
-
 
 function mapStateToProps(state) {
     return {

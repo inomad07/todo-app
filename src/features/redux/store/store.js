@@ -1,19 +1,21 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from '../reducers';
-import { helloSaga } from '../sagas';
+import rootSaga from '../sagas';
 
+
+/** Saga Middleware */
 const sagaMiddleware = createSagaMiddleware();
-
+/** Create middlewares for redux */
+let middlewares = applyMiddleware(sagaMiddleware);
 
 
 const Store = createStore(
     rootReducer,
-    applyMiddleware(sagaMiddleware)
+    compose(middlewares)
 );
 
-sagaMiddleware.run(helloSaga);
-
+sagaMiddleware.run(rootSaga);
 
 export default Store;

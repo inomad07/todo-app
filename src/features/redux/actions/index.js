@@ -1,101 +1,130 @@
 import types from '../constants'
-import TodoService from '../../services'
 // Helper functions to dispatch actions, optionally with payloads
 
-const getTodoList = (todos) => {
+const loadTodos = () => {
     return {
-        type: types.GET_ALL,
-        payload: todos
+        type: types.LOAD
     }
 };
 
-const createTodo = (todo) => {
+const loadTodosSuccess = (data) => {
+    return {
+        type: types.LOAD_SUCCESS,
+        payload: data
+    }
+};
+
+const loadTodosFailure = (data) => {
+    return {
+        type: types.LOAD_FAILURE,
+        payload: data
+    }
+};
+
+const add = (todo) => {
     return {
         type: types.ADD,
         payload: todo
     }
 };
 
-const changeState = (todo) => {
+const addTodoSuccess = (todo) => {
+    return {
+        type: types.ADD_SUCCESS,
+        payload: todo
+    }
+};
+
+const addTodoFailure = (data) => {
+    return {
+        type: types.ADD_FAILURE,
+        payload: data
+    }
+};
+
+const toggle = (todo) => {
     return {
         type: types.TOGGLE,
         payload: todo
     }
 };
 
-const updateTodo = (todo) => {
+const toggleTodoSuccess = (todo) => {
     return {
-        type: types.UPDATE,
+        type: types.TOGGLE_SUCCESS,
         payload: todo
     }
 };
 
-const removeTodo = (data) => {
+const toggleTodoFailure = (data) => {
+    return {
+        type: types.TOGGLE_FAILURE,
+        payload: data
+    }
+};
+
+const update = (id, text) => {
+    return {
+        type: types.UPDATE,
+        payload: {id, text}
+    }
+};
+
+const updateTodoSuccess = (todo) => {
+    return {
+        type: types.UPDATE_SUCCESS,
+        payload: todo
+    }
+};
+
+const updateTodoFailure = (data) => {
+    return {
+        type: types.UPDATE_FAILURE,
+        payload: data
+    }
+};
+
+const remove = (data) => {
     return {
         type: types.REMOVE,
         payload: data
     }
 };
 
-
-export default {
-    getAll: () => {
-        return (dispatch) => {
-            return TodoService.getAll()
-                .then((res) => {
-                    dispatch(getTodoList(res));
-                })
-                .catch((error) => {
-                    console.log('Cannot fetch', error)
-                })
-        }
-    },
-
-    add: (todo) => {
-        return (dispatch) => {
-            return TodoService.add(todo)
-                .then((res) => {
-                    dispatch(createTodo(res.body))
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        }
-    },
-
-    toggle: (id) => {
-        return (dispatch) => {
-            return TodoService.toggle(id)
-                .then((res) => {
-                    dispatch(changeState(res));
-                })
-                .catch((error) => {
-                    console.log('Cannot toggle', error)
-                })
-        }
-    },
-
-    update: (id, text) => {
-        return (dispatch) => {
-            return TodoService.update(id, text)
-                .then((res) => {
-                    dispatch(updateTodo(res.body));
-                })
-                .catch((error) => {
-                    console.log('Cannot update', error)
-                })
-        }
-    },
-
-    remove: (id) => {
-        return dispatch => {
-            return TodoService.remove(id)
-                .then((res) => {
-                    dispatch(removeTodo(res));
-                })
-                .catch((error) => {
-                    console.log('Cannot remove', error)
-                })
-        }
+const removeTodoSuccess = (data) => {
+    return {
+        type: types.REMOVE_SUCCESS,
+        payload: data
     }
+};
+
+const removeTodoFailure = (data) => {
+    return {
+        type: types.REMOVE_FAILURE,
+        payload: data
+    }
+};
+
+
+
+export {
+    loadTodos,
+    loadTodosSuccess,
+    loadTodosFailure,
+
+    add,
+    addTodoSuccess,
+    addTodoFailure,
+
+    toggle,
+    toggleTodoSuccess,
+    toggleTodoFailure,
+
+    update,
+    updateTodoSuccess,
+    updateTodoFailure,
+
+    remove,
+    removeTodoSuccess,
+    removeTodoFailure
 };

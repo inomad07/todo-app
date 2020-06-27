@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
+import styled from "styled-components";
 
-import './input.css';
 
-const Input = (props) => {
+const Input = styled.input`
+    font-size: 100%;
+    padding: 15px;
+    border-width: 0;
+`;
+
+const Form = (props) => {
     const [ name, setName ] = useState('');
     const { placeholder, onAddTodo } = props;
 
@@ -21,7 +27,7 @@ const Input = (props) => {
     };
 
     return (
-        <input
+        <Input
             type        = { "text" }
             value       = { name }
             placeholder = { placeholder }
@@ -31,9 +37,9 @@ const Input = (props) => {
     );
 };
 
-Input.propTypes = {
+Form.propTypes = {
     placeholder: PropTypes.string,
     onAddTodo: PropTypes.func
 };
 
-export default Input;
+export default Form;

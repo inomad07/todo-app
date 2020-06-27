@@ -1,12 +1,26 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import TodoList from '../features/components/TodoList';
-import Input from '../features/components/Input';
-import Title from '../common/components/Title';
+import Form from '../features/components/Form';
+import Header from '../common/components/Header';
 import Actions from '../features/redux/actions';
-import './app.css';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+`;
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
 
 function App (props) {
     const { add, toggle, update, remove, todoList } = props;
@@ -28,21 +42,24 @@ function App (props) {
     };
 
     return (
-        <div className="container">
-            <Title
-                title        = {'To-Do List'}
-            />
-            <Input
-                placeholder  = {'Type a todo, then hit enter!'}
-                onAddTodo    = { onAddTodo }
-            />
-            <TodoList
-                list         = { todoList }
-                onRemoveItem = { onRemoveTodo }
-                onToggleItem = { onToggleTodo }
-                onUpdateItem = { onUpdateTodo }
-            />
-        </div>
+        <>
+            <GlobalStyle />
+            <Container>
+                <Header
+                    title        = {'To-Do List'}
+                />
+                <Form
+                    placeholder  = {'Type a todo, then hit enter!'}
+                    onAddTodo    = { onAddTodo }
+                />
+                <TodoList
+                    list         = { todoList }
+                    onRemoveItem = { onRemoveTodo }
+                    onToggleItem = { onToggleTodo }
+                    onUpdateItem = { onUpdateTodo }
+                />
+            </Container>
+        </>
     )
 }
 

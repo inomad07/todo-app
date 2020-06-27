@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import './todo-list.css';
+
+const List = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const Item = styled.div`
+    background-color: whitesmoke;
+    margin-bottom: 5px;
+    padding: 15px;
+`;
 
 const TodoList = (props) => {
     const [ text, setText ] = useState("");
@@ -40,14 +51,14 @@ const TodoList = (props) => {
     };
 
     return (
-        <div className="todo-list">
-            { list.map(todo => <div className="todo" key={todo._id}
+        <List>
+            { list.map(todo => <Item key={todo._id}
                                     style={ { textDecoration: todo.toggle ? 'line-through' : 'none'} }>
                 {renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
                 <button onClick={() => onToggleItem(todo._id)}>Toggle</button>
                 <button onClick={() => onRemoveItem(todo._id)}>Delete</button>
-            </div>)}
-        </div>
+            </Item>)}
+        </List>
     );
 };
 

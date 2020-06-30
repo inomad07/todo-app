@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import * as React from "react";
 import styled from 'styled-components';
 
+import { headerProps as Props } from "../../../features/types";
 
 const Nav = styled.div`
     background-color: skyblue;
@@ -13,16 +13,12 @@ const Title = styled.div`
     color: #FFFF;
 `;
 
-const Header = ({ title }) => {
+const Header = ({ title }: Props) => {
     return (
         <Nav>
             <Title>{title}</Title>
         </Nav>
     );
-};
-
-Header.propTypes = {
-    title: PropTypes.string
 };
 
 export default Header;

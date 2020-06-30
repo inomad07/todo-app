@@ -1,12 +1,12 @@
-import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import TodoList from '../features/components/TodoList';
 import Form from '../features/components/Form';
 import Header from '../common/components/Header';
-import Actions from '../features/redux/actions';
+import { add, loadTodos, remove, toggle, update } from '../features/redux/actions';
+import { stateType as State, todoType as Todo } from '../features/types';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -22,23 +22,28 @@ const Container = styled.div`
 `;
 
 
-function App (props) {
-    const { add, toggle, update, remove, todoList } = props;
+function App () {
+    const todoList = useSelector((state: State) => state.rootReducer);
+    const dispatch = useDispatch();
 
-    const onAddTodo = (todo) => {
-        add(todo)
+    const onAddTodo = (todo: Todo) => {
+        dispatch(add(todo));
     };
 
-    const onRemoveTodo = (id) => {
-        remove(id)
+    const onRemoveTodo = (id: Todo) => {
+        dispatch(remove(id))
     };
 
-    const onToggleTodo = (id) => {
-        toggle(id)
+    const onToggleTodo = (id: Todo) => {
+        dispatch(toggle(id))
     };
 
-    const onUpdateTodo = (id, todo) => {
-        update(id, todo)
+    const onUpdateTodo = (todo: Todo) => {
+        dispatch(update(todo))
+    };
+
+    const onLoadTodos = () => {
+        dispatch(loadTodos())
     };
 
     return (
@@ -57,6 +62,7 @@ function App (props) {
                     onRemoveItem = { onRemoveTodo }
                     onToggleItem = { onToggleTodo }
                     onUpdateItem = { onUpdateTodo }
+                    onLoadTodos  = { onLoadTodos }
                 />
             </Container>
         </>
@@ -64,15 +70,4 @@ function App (props) {
 }
 
 
-function mapStateToProps(state) {
-    return {
-        todoList: state.rootReducer
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(Actions, dispatch)
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

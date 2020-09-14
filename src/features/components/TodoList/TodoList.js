@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
 const List = styled.div`
     display: flex;
@@ -15,12 +16,18 @@ const Item = styled.div`
 `;
 
 const TodoList = (props) => {
-    const [ text, setText ] = useState("");
-    const [ todoId, setId ] = useState("");
-    const { list, onRemoveItem, onToggleItem, onUpdateItem, onLoadTodos } = props;
+    const [text, setText] = useState("");
+    const [todoId, setId] = useState("");
+    const {
+        list,
+        onRemoveItem,
+        onToggleItem,
+        onUpdateItem,
+        onLoadTodos,
+    } = props;
 
     useEffect(() => {
-        onLoadTodos()
+        onLoadTodos();
     }, []);
 
     const onTextChange = (event) => {
@@ -34,43 +41,54 @@ const TodoList = (props) => {
 
     const saveItem = () => {
         onUpdateItem(todoId, text);
-        setId('');
-        setText('');
+        setTimeout(() => toastr.success("Todo successfully updated!"), 0);
+        setId("");
+        setText("");
+    };
+
+    const removeItem = (id) => {
+        onRemoveItem(id);
+        setTimeout(() => toastr.success("Todo successfully removed!"), 0);
     };
 
     const renderItem = (todo) => {
         if (todoId === todo._id) {
             return (
                 <span>
-                    <input
-                        type="text"
-                        value={text}
-                        onChange={onTextChange}/>
+                    <input type="text" value={text} onChange={onTextChange} />
                     <button onClick={saveItem}>Edit</button>
                 </span>
             );
         }
-        return (<span onDoubleClick={() => editItem(todo)}>{todo.text}</span>)
+        return <span onDoubleClick={() => editItem(todo)}>{todo.text}</span>;
     };
 
     return (
         <List>
-            { list.map(todo => <Item key={todo._id}
-                                    style={ { textDecoration: todo.toggle ? 'line-through' : 'none'} }>
-                {renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
-                <button onClick={() => onToggleItem(todo._id)}>Toggle</button>
-                <button onClick={() => onRemoveItem(todo._id)}>Delete</button>
-            </Item>)}
+            {list.map((todo) => (
+                <Item
+                    key={todo._id}
+                    style={{
+                        textDecoration: todo.toggle ? "line-through" : "none",
+                    }}
+                >
+                    {renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button onClick={() => onToggleItem(todo._id)}>
+                        Toggle
+                    </button>
+                    <button onClick={() => removeItem(todo._id)}>Delete</button>
+                </Item>
+            ))}
         </List>
     );
 };
 
 TodoList.propTypes = {
-    list:         PropTypes.array,
+    list: PropTypes.array,
     onRemoveItem: PropTypes.func,
     onToggleItem: PropTypes.func,
     onUpdateItem: PropTypes.func,
-    onLoadTodos:  PropTypes.func,
+    onLoadTodos: PropTypes.func,
 };
 
 export default TodoList;

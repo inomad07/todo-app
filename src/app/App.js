@@ -1,6 +1,5 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import Form from '../features/components/Form';
@@ -23,27 +22,28 @@ const Container = styled.div`
 `;
 
 
-function App (props) {
-    const { add, remove, toggle, update, loadTodos, todoList } = props;
+function App () {
+    const todoList = useSelector(state => state.rootReducer);
+    const dispatch = useDispatch();
 
     const onAddTodo = (todo) => {
-        add(todo)
+        dispatch(add(todo))
     };
 
     const onRemoveTodo = (id) => {
-        remove(id)
+        dispatch(remove(id))
     };
 
     const onToggleTodo = (id) => {
-        toggle(id)
+        dispatch(toggle(id))
     };
 
     const onUpdateTodo = (id, todo) => {
-        update(id, todo)
+        dispatch(update(id, todo))
     };
 
     const onLoadTodos = () => {
-        loadTodos()
+        dispatch(loadTodos())
     };
 
     return (
@@ -69,15 +69,4 @@ function App (props) {
     )
 }
 
-function mapStateToProps(state) {
-    return {
-        todoList: state.rootReducer
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ add, toggle, update, remove, loadTodos }, dispatch)
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

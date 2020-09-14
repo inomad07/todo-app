@@ -21,8 +21,10 @@ const Form = (props) => {
     const handleKeyPress = (e) => {
         if (e.key !== "Enter") return;
 
-        if (!text) return;
-
+        if (!text) {
+            setTimeout(() => toastr.error("Cannot create todo!"), 0);
+            return;
+        }
         const todo = {
             text,
             toggle: false,

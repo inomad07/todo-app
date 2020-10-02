@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import styled from "styled-components";
-
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
 const Input = styled.input`
     font-size: 100%;
@@ -23,6 +24,7 @@ const Form = (props) => {
         if (!name) return;
 
         onAddTodo(name);
+        setTimeout(() => toastr.success("Todo successfully created!"), 0);
         setName('');
     };
 

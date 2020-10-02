@@ -1,12 +1,11 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import TodoList from '../features/components/TodoList';
 import Form from '../features/components/Form';
 import Header from '../common/components/Header';
-import Actions from '../features/redux/actions';
+import { add, remove, toggle, update, loadTodos } from '../features/redux/actions';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -22,23 +21,28 @@ const Container = styled.div`
 `;
 
 
-function App (props) {
-    const { add, toggle, update, remove, todoList } = props;
+function App () {
+    const todoList = useSelector(state => state.rootReducer);
+    const dispatch = useDispatch();
 
     const onAddTodo = (todo) => {
-        add(todo)
+        dispatch(add(todo))
     };
 
     const onRemoveTodo = (id) => {
-        remove(id)
+        dispatch(remove(id))
     };
 
     const onToggleTodo = (id) => {
-        toggle(id)
+        dispatch(toggle(id))
     };
 
     const onUpdateTodo = (id, todo) => {
-        update(id, todo)
+        dispatch(update(id, todo))
+    };
+
+    const onLoadTodos = () => {
+        dispatch(loadTodos())
     };
 
     return (
@@ -57,22 +61,11 @@ function App (props) {
                     onRemoveItem = { onRemoveTodo }
                     onToggleItem = { onToggleTodo }
                     onUpdateItem = { onUpdateTodo }
+                    onLoadTodos  = { onLoadTodos }
                 />
             </Container>
         </>
     )
 }
 
-
-function mapStateToProps(state) {
-    return {
-        todoList: state.rootReducer
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(Actions, dispatch)
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -17,7 +17,11 @@ const Item = styled.div`
 const TodoList = (props) => {
     const [ text, setText ] = useState("");
     const [ todoId, setId ] = useState("");
-    const { list, onRemoveItem, onToggleItem, onUpdateItem } = props;
+    const { list, onRemoveItem, onToggleItem, onUpdateItem, onLoadTodos } = props;
+
+    useEffect(() => {
+        onLoadTodos();
+    }, []);
 
     const onTextChange = (event) => {
         setText(event.target.value);
@@ -67,6 +71,7 @@ TodoList.propTypes = {
     onRemoveItem: PropTypes.func,
     onToggleItem: PropTypes.func,
     onUpdateItem: PropTypes.func,
+    onLoadTodos:  PropTypes.func,
 };
 
 export default TodoList;

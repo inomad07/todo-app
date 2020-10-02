@@ -3,12 +3,10 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux';
 
 import App from './app'
-import Actions from './features/redux/actions'
 import Store from './features/redux/store'
 import * as serviceWorker from './registerServiceWorker';
 
 const store = Store();
-store.dispatch(Actions.getAll());
 
 render(
     <Provider store={store}>

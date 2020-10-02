@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import App from './app/app'
 import todoReducer from './features/redux/reducers'
 import Store from "./features/redux/store";
-import './common/assets/css/style.css';
+
 import * as serviceWorker from './registerServiceWorker';
 
 const store = Store(todoReducer);

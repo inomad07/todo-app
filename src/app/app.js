@@ -1,17 +1,24 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { add, remove, toggle, update } from '../features/redux/actions'
+import styled, { createGlobalStyle } from 'styled-components';
 
+import { add, remove, toggle, update } from '../features/redux/actions'
 import TodoList from '../features/components/TodoList'
 import Form from '../features/components/Form'
 import Header from '../common/components/Header'
 
-const styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-    }
-};
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+`;
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
 
 function App () {
     const todoList = useSelector(state => state.rootReducer);
@@ -29,26 +36,30 @@ function App () {
         dispatch(toggle(id))
     };
 
-    const onUpdateItem = (id, todo) => {
+    const onUpdateTodo = (id, todo) => {
         dispatch(update(id, todo))
     };
 
     return (
-        <div style = { styles.container }>
-            <Header>
-                To-Do List
-            </Header>
-            <Form
-                placeholder  = {'Type a todo, then hit enter!'}
-                onAddTodo    = { onAddTodo }
-            />
-            <TodoList
-                list         = { todoList }
-                onRemoveItem = { onRemoveTodo }
-                onToggleItem = { onToggleTodo }
-                onUpdateItem = { onUpdateItem}
-            />
-        </div>
+        <>
+            <GlobalStyle />
+            <Container>
+                <Header
+                    title        = { 'To-Do List' }
+                />
+                <Form
+                    placeholder  = { 'Type a todo, then hit enter!' }
+                    onAddTodo    = { onAddTodo }
+                    title        = { 'To-Do List' }
+                />
+                <TodoList
+                    list         = { todoList }
+                    onRemoveItem = { onRemoveTodo }
+                    onToggleItem = { onToggleTodo }
+                    onUpdateItem = { onUpdateTodo}
+                />
+            </Container>
+        </>
     )
 }
 

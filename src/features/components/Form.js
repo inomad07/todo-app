@@ -1,39 +1,43 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
+import styled from "styled-components";
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
-const styles = {
-    input: {
-        fontSize: "100%",
-        padding: 15,
-        borderWidth: 0
-    }
-};
+const Input = styled.input`
+    font-size: 100%;
+    padding: 15px;
+    border-width: 0;
+`;
 
 const Form = (props) => {
-    const [ value, setValue ] = useState('');
+    const [ text, setText ] = useState('');
     const { placeholder, onAddTodo } = props;
 
     const handleChange = (e) => {
-        setValue(e.target.value);
+        setText(e.target.value);
     };
 
     const handleKeyPress = (e) => {
         if (e.key !== "Enter") return;
 
-        if (!value) return;
+        if (!text) {
+            setTimeout(() => toastr.error("Cannot create todo!"), 0);
+            return;
+        }
 
-        onAddTodo(value);
-        setValue('');
+        onAddTodo(text);
+        setTimeout(() => toastr.success("Todo successfully created!"), 0);
+        setText('');
     };
 
     return (
-        <input
-            style       = { styles.input }
-            type        = { "text" }
-            value       = { value }
-            placeholder = { placeholder }
-            onChange    = { handleChange }
-            onKeyPress  = { handleKeyPress }
+        <Input
+            type={"text"}
+            value={text}
+            placeholder={placeholder}
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
         />
     );
 };

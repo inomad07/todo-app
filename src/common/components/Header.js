@@ -1,22 +1,22 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const styles = {
-    header: {
-        backgroundColor: "skyblue",
-        padding: 15
-    },
-    title: {
-        textAlign: "center",
-        color: "white"
-    }
-};
+const Nav = styled.div`
+    background-color: skyblue;
+    padding: 15px;
+`;
 
-const Header = ({ children }) => {
+const Title = styled.div`
+    text-align: center;
+    color: #FFFF;
+`;
+
+const Header = ({ title }) => {
     return (
-        <div style={styles.header}>
-            <div style={styles.title}>{children}</div>
-        </div>
+        <Nav>
+            <Title>{ title }</Title>
+        </Nav>
     );
 };
 

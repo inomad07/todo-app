@@ -1,5 +1,19 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import PropTypes from 'prop-types';
+import styled from "styled-components";
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
+
+const List = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const Item = styled.div`
+    background-color: whitesmoke;
+    margin-bottom: 5px;
+    padding: 15px;
+`;
 
 const TodoList = (props) => {
     const [ text, setText ] = useState("");
@@ -17,8 +31,14 @@ const TodoList = (props) => {
 
     const saveItem = () => {
         onUpdateItem(todoId, text);
+        setTimeout(() => toastr.success("Todo successfully updated!"), 0);
         setId('');
         setText('');
+    };
+
+    const removeItem = (id) => {
+        onRemoveItem(id);
+        setTimeout(() => toastr.success("Todo successfully removed!"), 0);
     };
 
     const renderItem = (todo) => {
@@ -39,15 +59,17 @@ const TodoList = (props) => {
     };
 
     return (
-        <div className="todo-list">
-            { list.map(todo => <div className="todo" key={todo.id}
-                                    style={ { textDecoration: todo.done ? 'line-through' : 'none'} }>
-                {renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
-                <button onClick={() => onToggleItem(todo.id)}>Toggle</button>
-                <button onClick={() => onRemoveItem(todo.id)}>Delete</button>
-            </div>)
-            }
-        </div>
+        <List>
+            {list.map(todo => (
+                <Item key={todo.id}
+                      style={{textDecoration: todo.done ? 'line-through' : 'none'}}
+                >
+                    {renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button onClick={() => onToggleItem(todo.id)}>Toggle</button>
+                    <button onClick={() => removeItem(todo.id)}>Delete</button>
+                </Item>
+            ))}
+        </List>
     );
 };
 

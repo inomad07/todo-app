@@ -22,7 +22,7 @@ const initialState = [
 
 let id = 3;
 
-const todoReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action) => {
     const { type, payload } = action;
 
     switch (type) {
@@ -53,4 +53,4 @@ const todoReducer = (state = initialState, action) => {
     }
 };
 
-export default todoReducer;
+export default rootReducer;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
 
-const List = (props) => {
+const TodoList = (props) => {
     const [ text, setText ] = useState("");
     const [ todoId, setId ] = useState("");
     const { list, onRemoveItem, onToggleItem, onUpdateItem } = props;
@@ -52,11 +52,11 @@ const List = (props) => {
 };
 
 
-List.propTypes = {
+TodoList.propTypes = {
     list:         PropTypes.array,
     onRemoveItem: PropTypes.func,
     onToggleItem: PropTypes.func,
     onUpdateItem: PropTypes.func,
 };
 
-export default List;
+export default TodoList;

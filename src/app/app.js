@@ -1,11 +1,10 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { add, remove, toggle, update } from '../features/redux/actions'
 
-import List from '../features/components/List'
-import Input from '../features/components/Input'
-import Title from '../common/components/Title'
+import TodoList from '../features/components/TodoList'
+import Form from '../features/components/Form'
+import Header from '../common/components/Header'
 
 const styles = {
     container: {
@@ -14,35 +13,36 @@ const styles = {
     }
 };
 
-function App (props) {
-    const { todoList, add, remove, toggle, update } = props;
+function App () {
+    const todoList = useSelector(state => state.rootReducer);
+    const dispatch = useDispatch();
 
     const onAddTodo = (todo) => {
-        add(todo)
+        dispatch(add(todo))
     };
 
     const onRemoveTodo = (id) => {
-        remove(id)
+        dispatch(remove(id))
     };
 
     const onToggleTodo = (id) => {
-        toggle(id)
+        dispatch(toggle(id))
     };
 
     const onUpdateItem = (id, todo) => {
-        update(id, todo)
+        dispatch(update(id, todo))
     };
 
     return (
         <div style = { styles.container }>
-            <Title>
+            <Header>
                 To-Do List
-            </Title>
-            <Input
+            </Header>
+            <Form
                 placeholder  = {'Type a todo, then hit enter!'}
                 onAddTodo    = { onAddTodo }
             />
-            <List
+            <TodoList
                 list         = { todoList }
                 onRemoveItem = { onRemoveTodo }
                 onToggleItem = { onToggleTodo }
@@ -52,14 +52,5 @@ function App (props) {
     )
 }
 
-function mapStateToProps(state) {
-    return {
-        todoList: state
-    }
-}
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ add, remove, toggle, update }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

@@ -9,7 +9,7 @@ const styles = {
     }
 };
 
-const Input = (props) => {
+const Form = (props) => {
     const [ value, setValue ] = useState('');
     const { placeholder, onAddTodo } = props;
 
@@ -38,9 +38,9 @@ const Input = (props) => {
     );
 };
 
-Input.propTypes = {
+Form.propTypes = {
     placeholder: PropTypes.string,
     onAddTodo: PropTypes.func
 };
 
-export default Input;
+export default Form;

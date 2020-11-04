@@ -1,3 +1,4 @@
+import { createSlice } from '@reduxjs/toolkit';
 import types from '../constants'
 
 // Initial state of the store
@@ -48,6 +49,12 @@ const rootReducer = (state = initialState, action) => {
         case types.REMOVE: {
             return state.filter(todo => todo.id !== payload)
         }
+
+        case types.REMOVE_COMPLETED: {
+            return items.filter(item => {
+                return !item.completed;
+            });
+        }    
 
         default: return state;
     }

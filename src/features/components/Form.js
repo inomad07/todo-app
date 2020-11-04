@@ -10,7 +10,7 @@ const styles = {
 };
 
 
-export default class Input extends Component {
+export default class Form extends Component {
     state = {
         value: ""
     };
@@ -49,7 +49,7 @@ export default class Input extends Component {
     }
 }
 
-Input.propTypes = {
+Form.propTypes = {
     placeholder: PropTypes.string,
     onAddTodo: PropTypes.func
 };

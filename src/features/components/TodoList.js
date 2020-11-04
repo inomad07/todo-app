@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 
-class List extends Component {
+class TodoList extends Component {
     state = {
         text: '',
         todoId: ''
@@ -54,11 +54,11 @@ class List extends Component {
     }
 }
 
-List.propTypes = {
+TodoList.propTypes = {
     list:         PropTypes.array,
     onRemoveItem: PropTypes.func,
     onToggleItem: PropTypes.func,
     onUpdateItem: PropTypes.func,
 };
 
-export default List;
+export default TodoList;

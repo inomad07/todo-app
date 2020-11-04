@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { add, remove, toggle, update } from '../features/redux/actions'
 
-import List from '../features/components/List'
-import Input from '../features/components/Input'
-import Title from '../common/components/Title'
+import TodoList from '../features/components/TodoList'
+import Form from '../features/components/Form'
+import Header from '../common/components/Header'
 
 const styles = {
     container: {
@@ -35,14 +35,14 @@ function App (props) {
 
     return (
         <div style = { styles.container }>
-            <Title>
+            <Header>
                 To-Do List
-            </Title>
-            <Input
+            </Header>
+            <Form
                 placeholder  = {'Type a todo, then hit enter!'}
                 onAddTodo    = { onAddTodo }
             />
-            <List
+            <TodoList
                 list         = { todoList }
                 onRemoveItem = { onRemoveTodo }
                 onToggleItem = { onToggleTodo }

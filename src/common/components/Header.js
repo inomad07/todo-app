@@ -12,7 +12,7 @@ const styles = {
     }
 };
 
-const Title = ({ children }) => {
+const Header = ({ children }) => {
     return (
         <div style={styles.header}>
             <div style={styles.title}>{children}</div>
@@ -20,8 +20,8 @@ const Title = ({ children }) => {
     );
 };
 
-Title.propTypes = {
+Header.propTypes = {
     children: PropTypes.string
 };
 
-export default Title;
+export default Header;

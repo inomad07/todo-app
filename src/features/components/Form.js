@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
 const styles = {
     input: {
@@ -25,10 +27,13 @@ export default class Form extends Component {
         const { onAddTodo } = this.props;
         const { value } = this.state;
 
-        if (!value) return;
+        if (!value) {
+            setTimeout(() => toastr.error("Cannot create todo!"), 0);
+            return;
+        }
 
         onAddTodo(value);
-
+        setTimeout(() => toastr.success("Todo successfully created!"), 0);
         this.setState({ value: "" });
     };
 

@@ -8,7 +8,8 @@
     "react-dom": "^17.0.1",
     "react-redux": "^5.1.1",
     "react-scripts": "^4.0.0",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "toastr": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -16,7 +17,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {},
   "browserslist": {
     "production": [
       ">0.2%",

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
 class TodoList extends Component {
     state = {
@@ -17,7 +19,13 @@ class TodoList extends Component {
 
     saveItem = () => {
         this.props.onUpdateItem(this.state.todoId, this.state.text);
+        setTimeout(() => toastr.success("Todo successfully updated!"), 0);
         this.setState({todoId: '', text: ''});
+    };
+
+    removeItem = (id) => {
+        this.props.onRemoveItem(id);
+        setTimeout(() => toastr.success("Todo successfully removed!"), 0);
     };
 
     renderItem = (todo) => {
@@ -38,7 +46,7 @@ class TodoList extends Component {
     };
 
     render() {
-        let { list, onRemoveItem, onToggleItem } = this.props;
+        const { list, onToggleItem } = this.props;
 
         return (
             <div className="todo-list">
@@ -46,7 +54,7 @@ class TodoList extends Component {
                                          style={ { textDecoration: todo.done ? 'line-through' : 'none'} }>
                         {this.renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
                         <button onClick={() => onToggleItem(todo.id)}>Toggle</button>
-                        <button onClick={() => onRemoveItem(todo.id)}>Delete</button>
+                        <button onClick={() => this.removeItem(todo.id)}>Delete</button>
                     </div>)
                 }
             </div>

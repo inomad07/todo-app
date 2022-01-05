@@ -7,12 +7,7 @@ type appProps = {
     todoList: []
 }
 
-type headerProps = {
-    title: string
-}
-
 type formProps = {
-    placeholder: string,
     onAddTodo: Function
 }
 
@@ -42,7 +37,6 @@ type stateType = {
 
 export type {
     appProps,
-    headerProps,
     formProps,
     actionType,
     todoListProps,

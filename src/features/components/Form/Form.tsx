@@ -11,9 +11,11 @@ const Input = styled.input`
     border-width: 0;
 `;
 
+const placeholder = 'Type a todo, then hit enter!'
+
 const Form = (props: Props) => {
     const [ text, setText ] = useState('');
-    const { placeholder, onAddTodo } = props;
+    const { onAddTodo } = props;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value);

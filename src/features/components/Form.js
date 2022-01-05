@@ -11,6 +11,7 @@ const styles = {
     }
 };
 
+const placeholder = 'Type a todo, then hit enter!'
 
 export default class Form extends Component {
     state = {
@@ -38,7 +39,6 @@ export default class Form extends Component {
     };
 
     render() {
-        const { placeholder } = this.props;
         const { value } = this.state;
 
         return (

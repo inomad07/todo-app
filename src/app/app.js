@@ -35,11 +35,8 @@ function App (props) {
 
     return (
         <div style = { styles.container }>
-            <Header>
-                To-Do List
-            </Header>
+            <Header />
             <Form
-                placeholder  = {'Type a todo, then hit enter!'}
                 onAddTodo    = { onAddTodo }
             />
             <TodoList

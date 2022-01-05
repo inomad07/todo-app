@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const styles = {
@@ -12,10 +12,10 @@ const styles = {
     }
 };
 
-const Header = ({ children }) => {
+function Header() {
     return (
         <div style={styles.header}>
-            <div style={styles.title}>{children}</div>
+            <div style={styles.title}>To-Do List</div>
         </div>
     );
 };

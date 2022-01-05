@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { todoListProps as Props, todoType } from '../../types'
+import { List, Item } from './style';
 
-const List = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const Item = styled.div`
-    background-color: whitesmoke;
-    margin-bottom: 5px;
-    padding: 15px;
-`;
 
 const TodoList = (props: Props) => {
     const [ text, setText ] = useState('');

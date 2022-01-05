@@ -1,13 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-
-import { formProps as Props } from '../../types';
-
-const Input = styled.input`
-    font-size: 100%;
-    padding: 15px;
-    border-width: 0;
-`;
+import React, { useState } from 'react'
+import { formProps as Props } from '../../types'
+import { Input } from './style';
 
 const Form = (props: Props) => {
     const [ name, setName ] = useState('');

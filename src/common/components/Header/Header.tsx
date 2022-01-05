@@ -1,24 +1,11 @@
-import * as React from "react";
-import styled from 'styled-components';
-
+import * as React from 'react'
 import { headerProps as Props } from "../../../features/types";
+import { Nav, Title } from './style';
 
-const Nav = styled.div`
-    background-color: skyblue;
-    padding: 15px;
-`;
-
-const Title = styled.div`
-    text-align: center;
-    color: #FFFF;
-`;
-
-const Header = ({ title }: Props) => {
+export default function Header({ title }: Props) {
     return (
         <Nav>
             <Title>{title}</Title>
         </Nav>
     );
 };
-
-export default Header;

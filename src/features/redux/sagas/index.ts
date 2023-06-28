@@ -8,12 +8,12 @@ import { watcherUpdateTodo } from './update.saga';
 
 
 export default function* rootSaga () {
-    yield all([
-        watcherLoadTodos(),
-        watcherCreateTodo(),
-        watcherRemoveTodo(),
-        watcherToggleTodo(),
-        watcherUpdateTodo()
-        // add other watchers to the array
-    ]);
+	yield all([
+		watcherLoadTodos(),
+		watcherCreateTodo(),
+		watcherRemoveTodo(),
+		watcherToggleTodo(),
+		watcherUpdateTodo()
+		// add other watchers to the array
+	]);
 }

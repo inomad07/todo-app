@@ -19,27 +19,27 @@ type todoListProps = {
     onLoadTodos:  Function
 }
 
-type todoType = {
+type Todo = {
     _id: string,
     text: string,
     toggle?: false
     id?: string
 }
 
-type actionType = {
+type Action = {
     type: string;
-    payload: todoType
+    payload: Todo
 }
 
-type stateType = {
+type State = {
     rootReducer: Function
 }
 
 export type {
-    appProps,
-    formProps,
-    actionType,
-    todoListProps,
-    todoType,
-    stateType,
-}
+	appProps,
+	formProps,
+	todoListProps,
+	Action,
+	Todo,
+	State,
+};

@@ -5,10 +5,10 @@ import rootSaga from '../sagas';
 
 
 export default function Store() {
-    const sagaMiddleware = createSagaMiddleware();
-    const middlewares = applyMiddleware(sagaMiddleware);
-    const store = createStore(rootReducer, compose(middlewares))
+	const sagaMiddleware = createSagaMiddleware();
+	const middlewares = applyMiddleware(sagaMiddleware);
+	const store = createStore(rootReducer, compose(middlewares));
 
-    sagaMiddleware.run(rootSaga)
-    return store
+	sagaMiddleware.run(rootSaga);
+	return store;
 }

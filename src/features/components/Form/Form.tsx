@@ -11,7 +11,6 @@ const placeholder = 'Type a todo, then hit enter!';
 const Form = (props: Props) => {
 	const [ text, setText ] = useState('');
 	const { onAddTodo } = props;
-	console.log(onAddTodo);
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setText(event.target.value);

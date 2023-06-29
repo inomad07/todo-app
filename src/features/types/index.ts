@@ -1,3 +1,4 @@
+import { todoReducer } from '../redux/reducers/todoReducer';
 type appProps = {
     add: Function,
     toggle: Function,
@@ -32,7 +33,7 @@ type Action = {
 }
 
 type State = {
-    rootReducer: Function
+    rootReducer: ReturnType<typeof todoReducer>
 }
 
 export type {

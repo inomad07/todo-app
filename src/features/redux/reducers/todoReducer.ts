@@ -3,7 +3,7 @@ import { Todo, Action } from '../../types';
 
 const initialState: Todo[] = [];
 
-export const rootReducer = (state = initialState, action: Action) => {
+export const todoReducer = (state = initialState, action: Action) => {
 	const { type, payload } = action;
 	switch (type) {
 	case types.LOAD_SUCCESS: {

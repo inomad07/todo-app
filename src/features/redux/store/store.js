@@ -1,11 +1,10 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from '../reducers'
+import { configureStore } from '@reduxjs/toolkit'
+import todoReducer from '../slices'
 
-export default function Store(initialState) {
-    return createStore(
-        rootReducer,
-        initialState,
-        applyMiddleware(thunk)
-    );
-}
+// Automatically adds the thunk middleware and the Redux DevTools extension
+export const Store = configureStore({
+  // Automatically calls `combineReducers`
+    reducer: {
+        rootReducer: todoReducer
+    }
+})

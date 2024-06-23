@@ -1,24 +1,9 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled, { createGlobalStyle } from 'styled-components';
-
+import { GlobalStyle, StyledContainer } from './style'
 import TodoList from '../features/components/TodoList';
 import Form from '../features/components/Form';
 import Header from '../common/components/Header';
 import { add, remove, toggle, update, load } from '../features/redux/thunks';
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-  }
-`;
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
 
 
 export default function App() {
@@ -48,9 +33,9 @@ export default function App() {
     return (
         <>
             <GlobalStyle />
-            <Container>
+            <StyledContainer>
                 <Header
-                    title        = {'To-Do List'}
+                    title        = {'To-Do List App'}
                 />
                 <Form
                     placeholder  = {'Type a todo, then hit enter!'}
@@ -63,7 +48,8 @@ export default function App() {
                     onUpdateItem = { onUpdateTodo }
                     onLoadTodos  = { onLoadTodos }
                 />
-            </Container>
+            </StyledContainer>
         </>
     )
 }
+

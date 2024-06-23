@@ -1,19 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { List, Item } from './style';
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
-
-const List = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const Item = styled.div`
-    background-color: whitesmoke;
-    margin-bottom: 5px;
-    padding: 15px;
-`;
 
 const TodoList = (props) => {
     const [ text, setText ] = useState("");
@@ -28,14 +17,14 @@ const TodoList = (props) => {
         setText(event.target.value);
     };
 
-    const editItem = (todo) => (e) =>{
+    const editItem = (todo) => (e) => {
         e.preventDefault();
         setId(todo._id);
         setText(todo.text);
     };
 
     const saveItem = () => {
-        onUpdateItem(todoId, text);
+        onUpdateItem({id: todoId, text});
         setTimeout(() => toastr.success("Todo successfully updated!"), 0);
         setId('');
         setText('');

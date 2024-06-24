@@ -1,24 +1,10 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled, { createGlobalStyle } from 'styled-components';
-
+import { GlobalStyle, Container } from './style'
 import TodoList from '../features/components/TodoList';
 import Form from '../features/components/Form';
 import Header from '../common/components/Header';
 import { add, remove, toggle, update, load } from '../features/redux/thunks';
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-  }
-`;
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
+import { TITLE, PLACEHOLDER } from '../common/constants';
 
 
 export default function App() {
@@ -50,10 +36,10 @@ export default function App() {
             <GlobalStyle />
             <Container>
                 <Header
-                    title        = {'To-Do List'}
+                    title        = {TITLE}
                 />
                 <Form
-                    placeholder  = {'Type a todo, then hit enter!'}
+                    placeholder  = {PLACEHOLDER}
                     onAddTodo    = { onAddTodo }
                 />
                 <TodoList
@@ -67,3 +53,4 @@ export default function App() {
         </>
     )
 }
+

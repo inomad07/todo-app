@@ -1,16 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PropTypes from 'prop-types';
-import styled from "styled-components";
+import { TODO_SUCCESSFULLY_CREATED } from '../../../common/constants'
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
+import { Input } from "./style";
 
-const Input = styled.input`
-    font-size: 100%;
-    padding: 15px;
-    border-width: 0;
-`;
-
-const Form = (props) => {
+export default function Form(props) {
     const [ name, setName ] = useState('');
     const { placeholder, onAddTodo } = props;
 
@@ -24,7 +19,7 @@ const Form = (props) => {
         if (!name) return;
 
         onAddTodo(name);
-        setTimeout(() => toastr.success("Todo successfully created!"), 0);
+        setTimeout(() => toastr.success(TODO_SUCCESSFULLY_CREATED), 0);
         setName('');
     };
 
@@ -34,14 +29,12 @@ const Form = (props) => {
             value       = { name }
             placeholder = { placeholder }
             onChange    = { handleChange }
-            onKeyPress  = { handleKeyPress }
+            onKeyDown   = { handleKeyPress }
         />
     );
-};
+}
 
 Form.propTypes = {
     placeholder: PropTypes.string,
     onAddTodo: PropTypes.func
 };
-
-export default Form;

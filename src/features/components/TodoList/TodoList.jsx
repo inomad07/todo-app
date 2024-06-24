@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { List, Item } from './style';
+import { EDIT, DELETE, TOGGLE, TODO_SUCCESSFULLY_UPDATED, TODO_SUCCESSFULLY_REMOVED } from "../../../common/constants";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
-
-const List = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const Item = styled.div`
-    background-color: whitesmoke;
-    margin-bottom: 5px;
-    padding: 15px;
-`;
 
 const TodoList = (props) => {
     const [ text, setText ] = useState("");
@@ -28,15 +18,15 @@ const TodoList = (props) => {
         setText(event.target.value);
     };
 
-    const editItem = (todo) => (e) =>{
+    const editItem = (todo) => (e) => {
         e.preventDefault();
         setId(todo._id);
         setText(todo.text);
     };
 
     const saveItem = () => {
-        onUpdateItem(todoId, text);
-        setTimeout(() => toastr.success("Todo successfully updated!"), 0);
+        onUpdateItem({id: todoId, text});
+        setTimeout(() => toastr.success(TODO_SUCCESSFULLY_UPDATED), 0);
         setId('');
         setText('');
     };
@@ -49,7 +39,7 @@ const TodoList = (props) => {
                         type="text"
                         value={text}
                         onChange={onTextChange}/>
-                    <button onClick={saveItem}>Edit</button>
+                    <button onClick={saveItem}>{EDIT}</button>
                 </span>
             );
         }
@@ -65,7 +55,7 @@ const TodoList = (props) => {
     const removeItem = (id) => (e) => {
         e.preventDefault();
         onRemoveItem(id);
-        setTimeout(() => toastr.success("Todo successfully removed!"), 0);
+        setTimeout(() => toastr.success(TODO_SUCCESSFULLY_REMOVED), 0);
     };
 
     return (
@@ -73,8 +63,8 @@ const TodoList = (props) => {
             { list.map(todo => <Item key={todo._id}
                                     style={ { textDecoration: todo.toggle ? 'line-through' : 'none'} }>
                 {renderItem(todo)}&nbsp;&nbsp;&nbsp;&nbsp;
-                <button onClick={toggleItem(todo._id)}>Toggle</button>
-                <button onClick={removeItem(todo._id)}>Delete</button>
+                <button onClick={toggleItem(todo._id)}>{TOGGLE}</button>
+                <button onClick={removeItem(todo._id)}>{DELETE}</button>
             </Item>)}
         </List>
     );

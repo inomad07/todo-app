@@ -1,87 +1,42 @@
-import {
-    loadTodos,
-    loadTodosSuccess,
-    loadTodosFailure,
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import TodoService from '../../services';
 
-    addTodo,
-    addTodoSuccess,
-    addTodoFailure,
-
-    toggleTodo,
-    toggleTodoSuccess,
-    toggleTodoFailure,
-
-    updateTodo,
-    updateTodoSuccess,
-    updateTodoFailure,
-
-    removeTodo,
-    removeTodoSuccess,
-    removeTodoFailure
-} from "../actions";
-
-import TodoService from "../../services";
-
-const load = () => async (dispatch) => {
-    dispatch(loadTodos());
-
-    try {
+export const load = createAsyncThunk(
+    'todos/load',
+    async () => {
         const response = await TodoService.getAll();
-        dispatch(loadTodosSuccess(response.todo));
-    } catch (error) {
-        dispatch(loadTodosFailure(error));
+        return response.todo;
     }
-};
+);
 
-const add = (todo) => async (dispatch) => {
-    dispatch(addTodo());
-
-    try {
+export const add = createAsyncThunk(
+    'todos/add',
+    async (todo) => {
         const response = await TodoService.add(todo);
-        dispatch(addTodoSuccess(response.todo));
-    } catch (error) {
-        dispatch(addTodoFailure(error));
+        return response.todo;
     }
-};
+);
 
-const remove = (id) => async (dispatch) => {
-    dispatch(removeTodo());
-
-    try {
-        const response = await TodoService.remove(id);
-        dispatch(removeTodoSuccess(response));
-    } catch (error) {
-        dispatch(removeTodoFailure(error));
-    }
-};
-
-const toggle = (id) => async (dispatch) => {
-    dispatch(toggleTodo());
-
-    try {
+export const toggle = createAsyncThunk(
+    'todos/toggle',
+    async (id) => {
         const response = await TodoService.toggle(id);
-        dispatch(toggleTodoSuccess(response.todo));
-    } catch (error) {
-        dispatch(toggleTodoFailure(error));
+        return response.todo;
     }
-};
+);
 
-const update = (id, text) => async (dispatch) => {
-    dispatch(updateTodo());
-
-    try {
+export const update = createAsyncThunk(
+    'todos/update',
+    async ({id, text}) => {
         const response = await TodoService.update(id, text);
-        dispatch(updateTodoSuccess(response.todo));
-    } catch (error) {
-        dispatch(updateTodoFailure(error));
+        return response.todo;
     }
-};
+);
 
-
-export {
-    load,
-    add,
-    toggle,
-    update,
-    remove
-};
+export const remove = createAsyncThunk(
+    'todos/remove',
+    async (id) => {
+        await TodoService.remove(id);
+        return { id };
+    }
+);

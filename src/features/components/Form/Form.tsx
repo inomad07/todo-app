@@ -25,7 +25,7 @@ const Form = (props: Props) => {
             value       = { name }
             placeholder = { placeholder }
             onChange    = { handleChange }
-            onKeyPress  = { handleKeyPress }
+            onKeyDown  = { handleKeyPress }
         />
     );
 };

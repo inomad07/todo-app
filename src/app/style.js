@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export const StyledContainer = styled.div`
+export const Container = styled.div`
     display: flex;
     flex-direction: column;
 `;

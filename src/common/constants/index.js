@@ -11,3 +11,22 @@ export const TODO_SUCCESSFULLY_UNTOGGLED = 'Todo successfully untoggled!';
 export const EDIT = 'Edit';
 export const DELETE = 'Delete';
 export const TOGGLE = 'Toggle';
+
+// Initial state of the store
+export const initialState = [
+    {
+        id: 1,
+        text: 'Hello World!',
+        done: false
+    },
+    {
+        id: 2,
+        text: 'Hola Mundo!',
+        done: false
+    },
+    {
+        id: 3,
+        text: 'Привет Мир!',
+        done: true
+    },
+];

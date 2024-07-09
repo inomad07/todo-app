@@ -1,14 +1,13 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
-import { StyledInput } from "./style";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import { PLACEHOLDER, TODO_SUCCESSFULLY_CREATED, CANNOT_CREATE_TODO } from "../../../common/constants";
+import { Input } from "./style";
 
 
-const Form = (props) => {
+const Form = ({ onAddTodo }) => {
     const [ text, setText ] = useState('');
-    const { onAddTodo } = props;
 
     const handleChange = (e) => {
         setText(e.target.value);
@@ -28,12 +27,12 @@ const Form = (props) => {
     };
 
     return (
-        <StyledInput
+        <Input
             type={"text"}
             value={text}
             placeholder={PLACEHOLDER}
             onChange={handleChange}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
         />
     );
 };

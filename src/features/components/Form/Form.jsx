@@ -1,20 +1,13 @@
-import React, { useState } from "react"
+import { useState } from "react";
 import PropTypes from "prop-types"
-import styled from "styled-components"
 import toastr from "toastr"
 import "toastr/build/toastr.min.css";
-
-const Input = styled.input`
-    font-size: 100%;
-    padding: 15px;
-    border-width: 0;
-`;
+import { Input } from "./style";
 
 const placeholder = 'Type a todo, then hit enter!'; 
 
-export default function Form(props) {
+export default function Form({ onAddTodo } ) {
     const [text, setText] = useState("");
-    const { onAddTodo } = props;
 
     const handleChange = (e) => {
         setText(e.target.value);
@@ -46,7 +39,7 @@ export default function Form(props) {
             onKeyPress={handleKeyPress}
         />
     );
-};
+}
 
 Form.propTypes = {
     onAddTodo: PropTypes.func,

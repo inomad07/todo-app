@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
+import { Item, List } from "./style";
 
-const List = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const Item = styled.div`
-    background-color: whitesmoke;
-    margin-bottom: 5px;
-    padding: 15px;
-`;
 
 const TodoList = (props) => {
     const [text, setText] = useState("");

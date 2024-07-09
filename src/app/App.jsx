@@ -1,25 +1,9 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled, { createGlobalStyle } from 'styled-components';
-
 import Form from '../features/components/Form';
 import Header from '../common/components/Header';
 import TodoList from '../features/components/TodoList';
 import { add, remove, toggle, update, loadTodos } from '../features/redux/actions';
-
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-  }
-`;
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
+import { GlobalStyle, Container } from './style'
 
 
 export default function App() {

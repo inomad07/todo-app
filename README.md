@@ -1,4 +1,4 @@
-Todo React App was created via Vite.
+Todo React App was bootstrapped with Vite.
 
 ## Available Scripts
 

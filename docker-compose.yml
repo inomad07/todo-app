@@ -1,0 +1,9 @@
+services:
+  reactjs: 
+    container_name: todo-app
+    build: 
+      context: . 
+      dockerfile: Dockerfile
+    restart: unless-stopped  
+    ports:
+      - "5173:5173"

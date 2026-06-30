@@ -1,55 +1,50 @@
-import { useDispatch, useSelector } from 'react-redux'
-import TodoList from '../features/components/TodoList'
-import Form from '../features/components/Form'
-import Header from '../common/components/Header'
-import { add, load, remove, toggle, update } from '../features/redux/thunks'
-import { stateType as State, todoType as Todo } from '../features/types'
-import { TITLE, PLACEHOLDER } from '../common/constants'
-import { GlobalStyle, Container } from './style'
+import { useAppDispatch, useAppSelector } from "../features/hooks";
+import type { RootState } from "../features/redux/store";
+import TodoList from "../features/components/TodoList";
+import Form from "../features/components/Form";
+import Header from "../common/components/Header";
+import { add, load, remove, toggle, update } from "../features/redux/thunks";
+import { TITLE, PLACEHOLDER } from "../common/constants";
+import { GlobalStyle, Container } from "./style";
 
 export default function App() {
-    const todoList = useSelector((state: State) => state.rootReducer);
-    const dispatch = useDispatch();
+	const todoList = useAppSelector((state: RootState) => state.rootReducer);
+	const dispatch = useAppDispatch();
 
-    const onAddTodo = (todo: string) => {
-        dispatch(add(todo));
-    };
+	const onAddTodo = (todo: string) => {
+		dispatch(add(todo));
+	};
 
-    const onRemoveTodo = (todo: Todo) => {
-        dispatch(remove(todo))
-    };
+	const onRemoveTodo = (id: string) => {
+		dispatch(remove(id));
+	};
 
-    const onToggleTodo = (todo: Todo) => {
-        dispatch(toggle(todo))
-    };
+	const onToggleTodo = (id: string) => {
+		dispatch(toggle(id));
+	};
 
-    const onUpdateTodo = (todo: Todo) => {
-        dispatch(update(todo))
-    };
+	const onUpdateTodo = (id: string, text: string) => {
+		dispatch(update({ id, text }));
+	};
 
-    const onLoadTodos = () => {
-        dispatch(load())
-    };
+	const onLoadTodos = () => {
+		dispatch(load());
+	};
 
-    return (
-        <>
-            <GlobalStyle />
-            <Container>
-                <Header
-                    title        = {TITLE}
-                />
-                <Form
-                    onAddTodo    = { onAddTodo }
-                    placeholder  = {PLACEHOLDER}
-                />
-                <TodoList
-                    list         = { todoList }
-                    onRemoveItem = { onRemoveTodo }
-                    onToggleItem = { onToggleTodo }
-                    onUpdateItem = { onUpdateTodo }
-                    onLoadTodos  = { onLoadTodos }
-                />
-            </Container>
-        </>
-    )
+	return (
+		<>
+			<GlobalStyle />
+			<Container>
+				<Header title={TITLE} />
+				<Form onAddTodo={onAddTodo} placeholder={PLACEHOLDER} />
+				<TodoList
+					list={todoList}
+					onRemoveItem={onRemoveTodo}
+					onToggleItem={onToggleTodo}
+					onUpdateItem={onUpdateTodo}
+					onLoadTodos={onLoadTodos}
+				/>
+			</Container>
+		</>
+	);
 }

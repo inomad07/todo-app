@@ -1,41 +1,32 @@
 export type appProps = {
-    add: Function,
-    toggle: Function,
-    update: Function,
-    remove: Function,
-    getAll: Function,
-    todoList: []
+	add: (todo: string) => void;
+	toggle: (todo: todoType) => void;
+	update: (todo: todoType) => void;
+	remove: (todo: todoType) => void;
+	getAll: () => void;
+	todoList: todoType[];
 };
 
 export type headerProps = {
-    title: string
-}
+	title: string;
+};
 
 export type formProps = {
-    placeholder: string,
-    onAddTodo: Function
-}
+	placeholder: string;
+	onAddTodo: (text: string) => void;
+};
 
 export type todoListProps = {
-    list:         any,
-    onRemoveItem: Function,
-    onToggleItem: Function,
-    onUpdateItem: Function,
-    onLoadTodos:  Function
-}
+	list: todoType[];
+	onRemoveItem: (id: string) => void;
+	onToggleItem: (id: string) => void;
+	onUpdateItem: (id: string, text: string) => void;
+	onLoadTodos: () => void;
+};
 
 export type todoType = {
-    _id: string,
-    text: string,
-    toggle?: false
-    id?: string
-}
-
-export type actionType = {
-    type: string;
-    payload: todoType
-}
-
-export type stateType = {
-    rootReducer: Function
-}
+	_id: string;
+	text: string;
+	toggle?: boolean;
+	id?: string;
+};
